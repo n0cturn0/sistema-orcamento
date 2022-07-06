@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/operador', [\App\Http\Controllers\OperadorController::class,'index'])->name('teste');
 Route::get('cliente', [\App\Http\Controllers\ClienteController::class,'index'])->name('cadastrocliente');
 Route::get('marca', [\App\Http\Controllers\MarcaController::class,'index'])->name('cadastromarca');
+Route::get('marca', [\App\Http\Controllers\ModeloController::class,'index'])->name('cadastromodelo');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -38,9 +39,9 @@ Route::get('/orcamento', function () {
 //     return view('marcacadastro');
 // });
 
-Route::get('/modelo', function () {
-    return view('modelocadastro');
-});
+// Route::get('/modelo', function () {
+//     return view('modelocadastro');
+// });
 
 // Route::get('/operador', function () {
 //     return view('operadorcadastro');

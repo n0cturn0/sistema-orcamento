@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Marca;
 use App\Models\Modelo as ModelsModelo;
-
+use Facade\FlareClient\Http\Client;
 class Modelo extends Component
 {
     public $novamarca, $modelo;
@@ -22,5 +22,13 @@ class Modelo extends Component
     'modelo'     => $this->modelo,
     'status'     => 0
        ]);
-    }
+
+   session()->flash('success_message', 'Novo Modelo Cadastrado com sucesso!!');
+   $this->reset();
+   return redirect()->route('cadastromodelo');
+    
+   }
+
+
+    
 }

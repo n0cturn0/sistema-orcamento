@@ -37,6 +37,9 @@
                                         <h4 class="card-title">Digite o modelo</h4>                                                   
                                         <div class="form-group">
                                           <label for="exampleFormControlSelect3">Modelo</label>
+                                          <div>
+                                             <span class="text-danger"> {{ session('success_message') }}</span>
+                                          </div>
                                           <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Modelo" wire:model="modelo" required>
                                         </div>
                                       </div>
