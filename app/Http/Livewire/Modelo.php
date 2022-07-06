@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Marca;
+use App\Models\Modelo as ModelsModelo;
 
 class Modelo extends Component
 {
@@ -16,6 +17,10 @@ class Modelo extends Component
 
     public function save()
     {
-        dd($this->novamarca);
+       $save = ModelsModelo::insert([
+    'idmarca'   => $this->novamarca,
+    'modelo'     => $this->modelo,
+    'status'     => 0
+       ]);
     }
 }

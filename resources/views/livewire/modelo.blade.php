@@ -16,7 +16,7 @@
                                         <h4 class="card-title">Selecione uma marca</h4>                                                   
                                         <div class="form-group">
                                           <label for="exampleFormControlSelect3">Escola a Marca</label>
-                                          <select class="form-control form-control-sm" id="exampleFormControlSelect3" wire:model="novamarca">
+                                          <select class="form-control form-control-sm" id="exampleFormControlSelect3"  wire:model="novamarca" required>
                                             <option>Selecione uma opção</option>
                                             @foreach($marca as $show )
                                             <option value="{{ $show->id}}">{{ $show->marca}}</option>
@@ -37,7 +37,7 @@
                                         <h4 class="card-title">Digite o modelo</h4>                                                   
                                         <div class="form-group">
                                           <label for="exampleFormControlSelect3">Modelo</label>
-                                          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Modelo" wire:model="modelo">
+                                          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Modelo" wire:model="modelo" required>
                                         </div>
                                       </div>
                                     </div>
