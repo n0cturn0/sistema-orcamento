@@ -5,9 +5,7 @@
                   <h4 class="card-title">Cadastro de Serviço</h4>
                  
                   <form class="forms-sample" wire:submit.prevent="save">
-                    <div>
-                         <span class="text-danger"> {{ session('success_message') }}</span>
-                    </div>
+                    
 
                     <div class="form-group row">
                       <div class="col">

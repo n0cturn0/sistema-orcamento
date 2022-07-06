@@ -20,6 +20,7 @@ Route::get('cliente', [\App\Http\Controllers\ClienteController::class,'index'])-
 Route::get('marca', [\App\Http\Controllers\MarcaController::class,'index'])->name('cadastromarca');
 Route::get('modelo', [\App\Http\Controllers\ModeloController::class,'index'])->name('cadastromodelo');
 Route::get('servico', [\App\Http\Controllers\ServicoController::class,'index'])->name('cadastroservico');
+Route::get('produto', [\App\Http\Controllers\ProdutoController::class,'index'])->name('cadastraproduto');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -48,9 +49,9 @@ Route::get('/orcamento', function () {
 //     return view('operadorcadastro');
 // });
 
-Route::get('/produto', function () {
-    return view('produtocadastro');
-});
+// Route::get('/produto', function () {
+//     return view('produtocadastro');
+// });
 
 // Route::get('/servico', function () {
 //     return view('servicocadastro');
