@@ -17,6 +17,11 @@ class ProdutoController extends Controller
         return view('produtocadastro');
     }
 
+    public function remove($id)
+    {
+        dd($id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

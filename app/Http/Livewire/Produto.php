@@ -50,5 +50,14 @@ class Produto extends Component
        
     }
 
+   public function remove($id)
+   {
+    
+  
+    $prod = ModelsProduto::find($id);
+    $prod->status = 1;
+    $prod->save();
+   }
+
 
 }

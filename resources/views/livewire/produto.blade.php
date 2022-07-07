@@ -116,7 +116,7 @@
                         <tr>
                           <td>{{ $produto->produto}}</td>
                           <td>{{ $produto->preco}}</td>
-                          <td><button type="submit" class="add btn btn-danger btn-sm" id="add-task">Apagar</button></td>
+                          <td><button wire:click.prevent="remove({{$produto->id}})" class="add btn btn-danger btn-sm" id="add-task">Apagar</button></td>
                         </tr>
                         @endforeach
                       </tbody>
