@@ -13,6 +13,25 @@ class Produto extends Component
     
     public $produtonovo, $preco, $quantidade, $produtopreco, $inserequantidade;
 
+    protected $listeners = ['deleteConfirmed' => 'deleteAppointment'];
+    public $appoimentid = null;
+    public function remove($id)
+   {
+    $this->appoimentid = $id;
+    $this->dispatchBrowserEvent('show-delete-confirmation');
+   }
+
+   public function deleteAppointment()
+   {
+   $appoimentid = ModelsProduto::findOrFail($this->appoimentid);
+   $appoimentid->delete();
+   }
+
+
+
+
+
+
     public function render()
     {
         $produtol = ModelsProduto::orderBy('produto', 'asc')->get();
@@ -50,14 +69,7 @@ class Produto extends Component
        
     }
 
-   public function remove($id)
-   {
-    
-  
-    $prod = ModelsProduto::find($id);
-    $prod->status = 1;
-    $prod->save();
-   }
+   
 
 
 }

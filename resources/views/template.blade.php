@@ -427,6 +427,25 @@
   <script src="{{ asset('../assets/js/select2.js') }}"></script>
   <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
  <script src="{{ asset('../assets/js/jquery.mask.js') }}"></script>
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script>
+          window.addEventListener('show-delete-confirmation', event => {
+          Swal.fire({
+            title: 'Você tem certeza?',
+            text: "Impossível restaurar depois de apagado!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar esse produto!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Livewire.emit('deleteConfirmed')
+            }
+          })
+          })
+ </script>
+
 <script>
 $(document).ready(function(){
   $('.date').mask('00/00/0000');

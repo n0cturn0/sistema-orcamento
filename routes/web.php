@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 // https://www.youtube.com/watch?v=wvd9x6dyqfQ&list=PLVSNL1PHDWvTH6zKPGTfxEdpv1sN0VbeV&index=7&ab_channel=CarlosFerreira-EspecializaTi
 // https://www.youtube.com/watch?v=0t0Vs0uAEsU&ab_channel=BeerandCode
 // https://www.youtube.com/watch?v=U5-P3KlArp8&ab_channel=IrebeLibrary
+//https://www.youtube.com/watch?v=CI5fZZrQOd4&ab_channel=Clovon
 Route::get('/operador', [\App\Http\Controllers\OperadorController::class,'index'])->name('teste');
 Route::get('cliente', [\App\Http\Controllers\ClienteController::class,'index'])->name('cadastrocliente');
 Route::get('marca', [\App\Http\Controllers\MarcaController::class,'index'])->name('cadastromarca');
