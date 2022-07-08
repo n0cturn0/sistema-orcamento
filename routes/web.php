@@ -35,26 +35,10 @@ Route::get('/template', function () {
 //     return view('cadastrocliente');
 // });
 
+
+//VIEW QUE VAI LEVAR PARA O MODULO DO ORCAMENTO
 Route::get('/orcamento', function () {
     return view('inicial');
 });
 
-// Route::get('/marca', function () {
-//     return view('marcacadastro');
-// });
 
-// Route::get('/modelo', function () {
-//     return view('modelocadastro');
-// });
-
-// Route::get('/operador', function () {
-//     return view('operadorcadastro');
-// });
-
-// Route::get('/produto', function () {
-//     return view('produtocadastro');
-// });
-
-// Route::get('/servico', function () {
-//     return view('servicocadastro');
-// });

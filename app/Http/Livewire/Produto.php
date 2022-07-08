@@ -11,7 +11,7 @@ class Produto extends Component
 {
     use WithPagination;
     
-    public $produtonovo, $preco, $quantidade, $produtopreco, $inserequantidade;
+    public $produtonovo, $preco, $quantidade, $produtopreco, $inserequantidade, $novopreco, $atualizaprodutopreco;
 
     protected $listeners = ['deleteConfirmed' => 'deleteAppointment'];
     public $appoimentid = null;
@@ -34,6 +34,7 @@ class Produto extends Component
 
     public function render()
     {
+        //Lista Produto
         $produtol = ModelsProduto::orderBy('produto', 'asc')->get();
         $exibelista     =   ModelsProduto::where('status','0' )->get();
          
@@ -58,7 +59,7 @@ class Produto extends Component
         return redirect()->route('cadastraproduto');
     }
 
-    public function inserepreco()
+    public function atualizaquantidade()
     {
          $prod = ModelsProduto::find($this->produtopreco);
          $prod->quantidade = $this->inserequantidade;
@@ -67,6 +68,16 @@ class Produto extends Component
         $this->reset();
         return redirect()->route('cadastraproduto');
        
+    }
+
+    public function atualizapreco()
+    {
+        $prod = ModelsProduto::find($this->atualizaprodutopreco);  
+        $prod->preco = $this->novopreco;
+        $prod->save();
+        session()->flash('preocoatualizado', 'Preço do produto atualizado');
+        $this->reset();
+        return redirect()->route('cadastraproduto');
     }
 
    
