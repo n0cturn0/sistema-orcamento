@@ -275,6 +275,7 @@
            @yield('operadorcadastro')
            @yield('produtocadastro')
            @yield('servicocadastra')
+           @yield('telacriaorcamento')
             {{-- <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -415,6 +416,12 @@
   <script src="{{ asset('../assets/js/template.js')}}"></script>
   <script src="{{ asset('../assets/js/settings.js')}}"></script>
   <script src="{{ asset('../assets/js/todolist.js')}}"></script>
+  <script src="{{ asset('../assets/js/jquery.cookie.js')}}"></script>
+  <script src="{{ asset('../assets/js/dashboard.js')}}"></script>
+  <script src="{{ asset('../assets/js/Chart.roundedBarCharts.js')}}"></script>
+
+
+
 
 
   <!-- endinject -->

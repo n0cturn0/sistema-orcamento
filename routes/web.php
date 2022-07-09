@@ -23,6 +23,8 @@ Route::get('modelo', [\App\Http\Controllers\ModeloController::class,'index'])->n
 Route::get('servico', [\App\Http\Controllers\ServicoController::class,'index'])->name('cadastroservico');
 Route::get('produto', [\App\Http\Controllers\ProdutoController::class,'index'])->name('cadastraproduto');
 Route::get('/produto/remove/{id}', [\App\Http\Controllers\ProdutoController::class,'remove'])->name('removeproduto');
+Route::get('telaorcamento', [\App\Http\Controllers\OrcamentoController::class,'index'])->name('telacriaorcamento');
+
 Route::get('/', function () {
     return view('welcome');
 });
