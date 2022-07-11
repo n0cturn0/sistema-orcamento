@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orcamento;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class OrcamentoController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +16,7 @@ class OrcamentoController extends Controller
      */
     public function index()
     {
+        
         return view('telacriaorcamento');
     }
 
@@ -46,7 +49,13 @@ class OrcamentoController extends Controller
      */
     public function show(Orcamento $orcamento)
     {
-        //
+        // $prod = Produto::find(3); 
+        // //echo $prod->produto;
+       
+
+        $prod = Produto::select('*')->where('id', '=', 3)->get('produto')->first();
+        echo $prod->id;
+        //dd($prod);
     }
 
     /**
