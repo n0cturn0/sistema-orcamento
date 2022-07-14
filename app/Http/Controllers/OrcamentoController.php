@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Orcamento;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Database;
+use Illuminate\Support\Facades\DB;
 
 class OrcamentoController extends Controller
 {
@@ -18,6 +20,12 @@ class OrcamentoController extends Controller
     {
         
         return view('telacriaorcamento');
+    }
+
+
+    public function tempo($post)
+    {
+        return view('inicial', ['id' => $post]);
     }
 
     /**
@@ -53,9 +61,9 @@ class OrcamentoController extends Controller
         // //echo $prod->produto;
        
 
-        $prod = Produto::select('*')->where('id', '=', 3)->get('produto')->first();
-        echo $prod->id;
-        //dd($prod);
+        // $last_row = DB::table('orcamentos')->latest()->reorder('id', 'desc')->row()->get();
+        $last = DB::table('orcamentos')->orderBy('id', 'DESC')->first();
+        
     }
 
     /**

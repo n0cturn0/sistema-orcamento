@@ -1,7 +1,4 @@
- @extends('template')
- @section('telacriaorcamento')
-
- <div>
+<div>
     
 
     <div>
@@ -180,5 +177,3 @@
 
 
 </div>
-
-  @endsection

@@ -15,8 +15,8 @@ class CreateOrcamentosTable extends Migration
     {
         Schema::create('orcamentos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps('dataentrada');
-            $table->timestamps('previsaosaida');
+            $table->date('dataentrada');
+            $table->date('previsaosaida');
             $table->string('modelo');
             $table->string('marca');
             $table->string('operador');
