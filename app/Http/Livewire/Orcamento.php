@@ -3,45 +3,44 @@
 namespace App\Http\Livewire;
 
 use App\Models\Cliente;
+use App\Models\Marca;
+use App\Models\Modelo;
 use App\Models\Produto;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
 class Orcamento extends Component
 {
-    public $dataentrada='Teste', $idproduto, $numorca;
-    public $produtos = null;
+    
+    public $marca;
+    public $modelos;
+    
+    public $selecionamarca = NULL;
+ 
 
-
-
-    public function addidorcamento($post)
+    public function mount()
     {
-        return redirect()->to('/orcamento/'.$post);
         
+        $this->marca = Marca::all();
+        $this->modelos = collect();  
     }
-
-
-    public function filterproduto()
-    {
-       
-        // $this->produtos = Produto::select('*')->where('id', '=', $this->idproduto)->get('produto')->first();
-        $prod = Produto::select('*')->where('id', '=', $this->idproduto)->get('produto')->first();
-        $nome_produto = $prod->id;
-        dd($nome_produto);
-    }
-
-
 
     public function render()
     {
-        // $exibelista     =   Produto::where('status','0' )->get();
         $last = DB::table('orcamentos')->orderBy('id', 'DESC')->first();
-
         return view('livewire.orcamento',
         [
         'ultimoid' => $last->id, 
         'clientes' => Cliente::orderBy('cliente', 'asc')->get()
         ]);
+    }
+
+    public function updateMarca($marca)
+    {
+        if (!is_null($marca)) {
+            $this->modelos = Modelo::where('idmarca', $marca)->get();
+           
+        }
     }
 
     
