@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Modelo;
 use App\Models\Orcamento;
 use App\Models\Produto;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Database;
 use Illuminate\Support\Facades\DB;
@@ -19,13 +21,37 @@ class OrcamentoController extends Controller
     public function index()
     {
         
-        return view('telacriaorcamento');
+         return view('teladeatendimento');
     }
 
 
-    public function tempo($post)
+    public function tempo()
     {
-        return view('inicial', ['id' => $post]);
+        
+        // $final  = DB::table('marcas')
+        // ->join('modelos', 'marcas.id', '=', 'modelos.idmarca')->get();
+
+        // dd($final);
+
+        //ULTIMO NUMERO DE ORCAMENTO
+        $last = DB::table('orcamentos')->orderBy('id', 'DESC')->first();
+        // $marca_modelo = DB::table('modelos')
+        //                         ->join('marcas', 'modelos.id', '=', 'idmarca')->get();
+        
+        $binding = "select * from modelos 
+        inner join marcas on
+        marcas.id = modelos.idmarca";
+
+        $marca_modelo = DB::select($binding);
+                                 return view('teladeatendimento',
+        [
+        'ultimoid' => $last->id, 
+        'marca_modelo' => $marca_modelo,
+        'clientes' => Cliente::orderBy('cliente', 'asc')->get()
+        
+        ]);
+
+       
     }
 
     /**
@@ -57,8 +83,7 @@ class OrcamentoController extends Controller
      */
     public function show(Orcamento $orcamento)
     {
-        // $prod = Produto::find(3); 
-        // //echo $prod->produto;
+        
        
 
         // $last_row = DB::table('orcamentos')->latest()->reorder('id', 'desc')->row()->get();
