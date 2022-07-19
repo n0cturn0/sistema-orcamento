@@ -14,4 +14,5 @@ class Orcamento extends Model
         'valortoral', 'status'
 
 ];
+
 }

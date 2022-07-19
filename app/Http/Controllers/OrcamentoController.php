@@ -21,7 +21,7 @@ class OrcamentoController extends Controller
     public function index()
     {
         
-         return view('teladeatendimento');
+        return view('telaprincipal');
     }
 
 

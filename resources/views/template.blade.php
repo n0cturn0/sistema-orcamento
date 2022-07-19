@@ -277,6 +277,7 @@
            @yield('servicocadastra')
            @yield('telacriaorcamento')
            @yield('orcamentoview')
+           @yield('telaprincipal')
             {{-- <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
