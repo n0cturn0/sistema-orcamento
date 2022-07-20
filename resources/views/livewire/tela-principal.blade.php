@@ -16,32 +16,68 @@
 @endif
 
 <table class="table table-bordered">
-    <tr>
-     
-        <th>Name</th>
-       
-    </tr>
+    <thead>
+        <th>Servoço / Produto</th>
+        <th>Quantidade</th>
+    </thead>
+   
     @foreach($orcamentos as $key => $value)
         <tr>
             
             <td>{{ $value->modelo }}</td>
+            <td>{{ $value->itemquantidade }}</td>
             
         </tr>
     @endforeach
 </table>
    
-   
+   <br><br>
   
     <form>
         <div class=" add-input">
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <select wire:model="name.0" >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <label for="exampleFormControlSelect3">Previsão de entrega</label>
+                        <input type="text" data-mask="00/00/0000" class="form-control" placeholder="Enter Name" wire:model="dataentrada">
+                        @error('name.0') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect3">Quantidade</label>
+                        {{-- <input type="phone" class="form-control" wire:model="phone.0" placeholder="0"> --}}
+                        @error('phone.0') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+               
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect3">Escolha o produto</label>
+                        <select class="form-control form-control-sm" id="exampleFormControlSelect3"  wire:model="name.0" >
+                       @foreach ($produto as $item)
+                         <option value="{{$item->produto}}" >{{$item->produto}}</option>
+                       @endforeach
                     </select>
                         {{-- <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.0"> --}}
                         @error('name.0') <span class="text-danger error">{{ $message }}</span>@enderror
@@ -49,12 +85,15 @@
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
-                        <input type="phone" class="form-control" wire:model="phone.0" placeholder="Enter Phone">
+                        <label for="exampleFormControlSelect3">Quantidade</label>
+                        <input type="phone" class="form-control" wire:model="phone.0" placeholder="0">
                         @error('phone.0') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">Add</button>
+                    <div class="form-group">
+                    <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">+Adicionar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,7 +140,7 @@
         <div><span class="text-danger"> {{ session('finalizado') }}</span></div>
         <div class="row">
             <div class="col-md-12">
-                <button type="button" wire:click.prevent="store()" class="btn btn-success btn-sm">Submit</button>
+                <button type="button" wire:click.prevent="store()" class="btn btn-success btn-sm">Adicionar Item</button>
                 <button type="button" wire:click.prevent="finalizar()" class="btn btn-danger btn-sm">Encerrar Orçamento</button>
             </div>
         </div>
