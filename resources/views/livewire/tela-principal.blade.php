@@ -46,7 +46,7 @@
                         {{-- <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.0"> --}}
                         @error('name.0') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
-                </div><input type="hidden" name="idorcamento" value="{{$idorcamentos}}">
+                </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         <input type="phone" class="form-control" wire:model="phone.0" placeholder="Enter Phone">
@@ -98,10 +98,11 @@
                 </div>
             </div>
         @endforeach --}}
-  
+        <div><span class="text-danger"> {{ session('finalizado') }}</span></div>
         <div class="row">
             <div class="col-md-12">
                 <button type="button" wire:click.prevent="store()" class="btn btn-success btn-sm">Submit</button>
+                <button type="button" wire:click.prevent="finalizar()" class="btn btn-danger btn-sm">Encerrar Orçamento</button>
             </div>
         </div>
   

@@ -11,10 +11,10 @@ namespace App\Http\Livewire;
 use App\Models\Orcamento;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-
+//https://www.codecheef.org/article/laravel-livewire-dynamically-add-more-input-fields-example
 class TelaPrincipal extends Component
 {
-    public $orcamentos, $name, $phone, $contact_id, $idorcamentoinsert;
+    public $orcamentos, $name, $phone, $contact_id, $idorcamentoinsert, $insert_prev;
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -37,12 +37,12 @@ class TelaPrincipal extends Component
         // $binding = "select * from modelos 
         // inner join marcas on
         // marcas.id = modelos.idmarca";
-        $last = DB::table('orcamentos')->orderBy('idorcamento', 'DESC')->first();
+        $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
         // $this->orcamentos = Orcamento::all();
-        $this->orcamentos = DB::table('orcamentos')->where('idorcamento', (intval($last->idorcamento)+1))->get();
+        $this->orcamentos = DB::table('orcamentos')->where('idorcamento', (intval($last->orcid)+1))->get();
         // $marca_modelo = DB::select($binding);
         // return view('livewire.tela-principal', ['marca_modelo' => $marca_modelo]);
-        return view('livewire.tela-principal',['idorcamentos' => (intval($last->idorcamento)+1)]);
+        return view('livewire.tela-principal');
     }
 
     private function resetInputFields(){
@@ -50,8 +50,23 @@ class TelaPrincipal extends Component
         // $this->phone = '';
     }
     
+    public function finalizar()
+    {
+        $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
+        $inser_val = (intval($last->orcid+1));
+        DB::table('orcamentoid')->insert([
+            ['orcid' => $inser_val , 'statusorc' => 1]
+            
+        ]);
+        session()->flash('finalizado', 'Orçamento Finalizado');
+           $this->reset();
+
+
+    }
     public function store()
     {
+        $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
+        
         // $validatedDate = $this->validate([
         //         'name.0' => 'required',
         //         'phone.0' => 'required',
@@ -69,7 +84,7 @@ class TelaPrincipal extends Component
         foreach ($this->name as $key => $value) {
 
             DB::table('orcamentos')->insert([
-                ['modelo' => $this->name[$key], 'idorcamento' => $this->idorcamentoinsert],
+                ['modelo' => $this->name[$key], 'idorcamento' => (intval($last->orcid+1)) ]
                 
             ]);
             
