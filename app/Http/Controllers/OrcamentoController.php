@@ -18,6 +18,14 @@ class OrcamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function novoorcamento()
+    {
+        //ULTIMO NUMERO DE ORCAMENTO
+        $last = DB::table('orcamentos')->orderBy('id', 'DESC')->first();
+        return view('inicioorcamento', ['idinicial' => $last->id]);
+    }
+
+
     public function index()
     {
         

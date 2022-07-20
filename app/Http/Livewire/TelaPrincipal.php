@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class TelaPrincipal extends Component
 {
-    public $orcamentos, $name, $phone, $contact_id;
+    public $orcamentos, $name, $phone, $contact_id, $idorcamentoinsert;
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -37,18 +37,19 @@ class TelaPrincipal extends Component
         // $binding = "select * from modelos 
         // inner join marcas on
         // marcas.id = modelos.idmarca";
-
-        $this->orcamentos = Orcamento::all();
+        $last = DB::table('orcamentos')->orderBy('idorcamento', 'DESC')->first();
+        // $this->orcamentos = Orcamento::all();
+        $this->orcamentos = DB::table('orcamentos')->where('idorcamento', (intval($last->idorcamento)+1))->get();
         // $marca_modelo = DB::select($binding);
         // return view('livewire.tela-principal', ['marca_modelo' => $marca_modelo]);
-        return view('livewire.tela-principal');
+        return view('livewire.tela-principal',['idorcamentos' => (intval($last->idorcamento)+1)]);
     }
 
     private function resetInputFields(){
         $this->name = '';
         // $this->phone = '';
     }
-
+    
     public function store()
     {
         // $validatedDate = $this->validate([
@@ -66,7 +67,14 @@ class TelaPrincipal extends Component
         // );
    
         foreach ($this->name as $key => $value) {
-            Orcamento::create(['modelo' => $this->name[$key]]);
+
+            DB::table('orcamentos')->insert([
+                ['modelo' => $this->name[$key], 'idorcamento' => $this->idorcamentoinsert],
+                
+            ]);
+            
+            // Orcamento::create(['modelo' => $this->name[$key]]);
+
         }
   
         $this->inputs = [];

@@ -269,7 +269,7 @@
         <div class="content-wrapper">
           <div class="row">
            @yield('cadastrocliente')
-           @yield('inicioorcamento')
+           
            @yield('marcacadastro')
            @yield('modelocadastro')
            @yield('operadorcadastro')
@@ -278,6 +278,7 @@
            @yield('telacriaorcamento')
            @yield('orcamentoview')
            @yield('telaprincipal')
+           @yield('inicioorcamento')
             {{-- <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">

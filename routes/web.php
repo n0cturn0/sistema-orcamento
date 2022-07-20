@@ -25,7 +25,7 @@ Route::get('servico', [\App\Http\Controllers\ServicoController::class,'index'])-
 Route::get('produto', [\App\Http\Controllers\ProdutoController::class,'index'])->name('cadastraproduto');
 Route::get('/produto/remove/{id}', [\App\Http\Controllers\ProdutoController::class,'remove'])->name('removeproduto');
 Route::get('telaorcamento', [\App\Http\Controllers\OrcamentoController::class,'index'])->name('telacriaorcamento');
-Route::get('teste', [\App\Http\Controllers\OrcamentoController::class,'show'])->name('show');
+Route::get('/novo', [\App\Http\Controllers\OrcamentoController::class,'novoorcamento'])->name('show');
 // Route::get('/telaorcamento', [\App\Http\Controllers\OrcamentoController::class,'tempo'])->name('temp');
 
 

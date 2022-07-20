@@ -37,10 +37,16 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.0">
+                        <select wire:model="name.0" >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                        {{-- <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.0"> --}}
                         @error('name.0') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
-                </div><input type="hidden" name="dataentrada" value="2022-07-19">
+                </div><input type="hidden" name="idorcamento" value="{{$idorcamentos}}">
                 <div class="col-md-5">
                     <div class="form-group">
                         <input type="phone" class="form-control" wire:model="phone.0" placeholder="Enter Phone">
@@ -56,15 +62,16 @@
         @foreach($inputs as $key => $value)
         <div class=" add-input">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.{{ $value }}">
                         @error('name.'.$value) <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                 </div>
              
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <button class="btn btn-danger btn-sm" wire:click.prevent="remove({{$key}})">Remove</button>
+                    
                 </div>
             </div>
         </div>
