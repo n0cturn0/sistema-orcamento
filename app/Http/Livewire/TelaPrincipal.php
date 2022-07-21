@@ -1,11 +1,11 @@
 <?php
 use App\Models\Modelo;
 use App\Models\Orcamento;
-use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Database;
 namespace App\Http\Livewire;
 
+use App\Models\Cliente;
 use App\Models\Orcamento;
 use App\Models\Produto;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +13,7 @@ use Livewire\Component;
 //https://www.codecheef.org/article/laravel-livewire-dynamically-add-more-input-fields-example
 class TelaPrincipal extends Component
 {
-    public $orcamentos, $name, $dataentrada, $phone, $contact_id, $idorcamentoinsert, $insert_prev;
+    public $orcamentos, $name, $dataentradaform, $phone, $cliente, $contact_id, $idorcamentoinsert, $insert_prev, $idclienteinsert, $marcaemodeloinsert;
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -38,15 +38,25 @@ class TelaPrincipal extends Component
         // seta para objeto orcamento o valor doultimo id da tabela de controle e adiciona +1 
         $this->orcamentos = DB::table('orcamentos')->where('idorcamento', (intval($last->orcid)+1))->get();
         $produto = Produto::all();
+        $cliente = Cliente::all();
+        //Marca e Modelo
+        $binding = "select * from modelos inner join marcas on marcas.id = modelos.idmarca order by modelos.modelo ASC";
+        $marcaemodelo = DB::select($binding);
+        
+
         return view('livewire.tela-principal',
-        ['produto' => $produto]
+        [
+            'produto'       => $produto,
+            'clienteform'   => $cliente,
+            'marcaemodelo'  => $marcaemodelo
+            ]
         );
     }
 
     private function resetInputFields(){
         $this->name = '';
         $this->phone = '';
-        $this->dataentrada;
+       
     }
     
     public function finalizar()
@@ -62,12 +72,31 @@ class TelaPrincipal extends Component
 
 
     }
+
+    public function identificacao()
+    {
+        
+        
+    $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
+    $now = date("Y-m-d");
+    $datasaida = date('Y-m-d', strtotime(str_replace('/', '-', $this->dataentradaform)));
+    
+    DB::table('controle_orcamento')->insert([
+        'idorcamento'       => (intval($last->orcid+1)),
+        'datadeentrada'     => $now, 
+        'datadesaida'       => $datasaida,
+        'cliente_id'        => $this->idclienteinsert,
+        'equipamento'       => $this->marcaemodeloinsert,
+        'status'            => 0
+
+    ]);
+    }
     public function store()
     {
         $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
         //Coverte data Mysql Formtat
         
-         $newdate = date("Y-m-d", strtotime($this->dataentrada));
+         
         // $validatedDate = $this->validate([
         //         'name.0' => 'required',
         //         'phone.0' => 'required',
@@ -82,14 +111,16 @@ class TelaPrincipal extends Component
         //     ]
         // );
    
+       
         foreach ($this->name as $key => $value) {
 
             DB::table('orcamentos')->insert([
                 [
-                'modelo'            => $this->name[$key], 
+                'item'            => $this->name[$key], 
                 'itemquantidade'    => $this->phone[$key],
-                'idorcamento'       => (intval($last->orcid+1)),
-                'dataentrada'       => $newdate
+                'idorcamento'       => (intval($last->orcid+1))
+                
+               
                 ]
                 
             ]);

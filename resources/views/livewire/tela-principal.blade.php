@@ -4,9 +4,77 @@
         <div class="col-md-12 grid-margin stretch-card">
                    <div class="card">
                      <div class="card-body">
-                       <h4 class="card-title">Cadastro de Produto</h4>
+                       <h4 class="card-title">O R Ç A M E N T O</h4>
                        <span class="text-danger"> {{ session('success_message') }}</span>
                        <form class="forms-sample">
+
+
+
+                        <div class=" add-input">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect3">Previsão de entrega</label>
+                                        <input type="text" data-mask="00/00/0000" class="form-control" placeholder="Digite a data" required wire:model="dataentradaform">
+                                        @error('name.0') <span class="text-danger error">{{ $message }}</span>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect3">Cliente</label>
+                                        <select class="form-control form-control-sm" id="exampleFormControlSelect3" wire:model="idclienteinsert">
+                                            @foreach ($clienteform as $item)
+                                            <option value="{{$item->id}}">{{$item->cliente}}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect3">Marca / Modelo</label>
+                                        <select class="form-control form-control-sm" id="exampleFormControlSelect3" wire:model="marcaemodeloinsert">
+                                            <option>Escolha uma opção</option>
+                                            @foreach ($marcaemodelo as $item)
+                                            <option value="{{$item->marca}}-{{$item->modelo}}">{{$item->marca}}-{{$item->modelo}}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <button type="button" wire:click.prevent="identificacao()" class="btn btn-success btn-sm">Adicionar </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                         
 <div>
     @if (session()->has('message'))
@@ -35,23 +103,7 @@
   
     <form>
         <div class=" add-input">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect3">Previsão de entrega</label>
-                        <input type="text" data-mask="00/00/0000" class="form-control" placeholder="Enter Name" wire:model="dataentrada">
-                        @error('name.0') <span class="text-danger error">{{ $message }}</span>@enderror
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect3">Quantidade</label>
-                        {{-- <input type="phone" class="form-control" wire:model="phone.0" placeholder="0"> --}}
-                        @error('phone.0') <span class="text-danger error">{{ $message }}</span>@enderror
-                    </div>
-                </div>
-               
-            </div>
+            
 
 
 
