@@ -129,31 +129,14 @@
     <form class="form-inline">
         <div class=" add-input">
             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="exampleFormControlSelect3">Escolha o produto</label>
                         <select class="form-control form-control-sm" id="exampleFormControlSelect3"  wire:model="name.0" >
+                            <option></option>
                        @foreach ($produto as $item)
-                         <option value="{{$item->id}}" >{{$item->produto}}</option>
+                         <option value="{{$item->id}}" >{{$item->produto}}&nbsp; {{$item->preco}} R$</option>
                        @endforeach
                     </select>
                         {{-- <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.0"> --}}
@@ -174,6 +157,32 @@
                     
                 </div>
             </div>
+
+
+            <div class="row">
+
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect3">Escolha o Serviço</label>
+                        <select class="form-control form-control-sm" id="exampleFormControlSelect3"  wire:model="servicoid.0" >
+                            <option>---=---</option>
+                       @foreach ($servicos as $item)
+                         <option value="{{$item->id}}" >{{$item->servico}}&nbsp; {{$item->preco}} R$</option>
+                         
+                       @endforeach
+                    </select>
+                        {{-- <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.0"> --}}
+                        @error('name.0') <span class="text-danger error">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
         </div>
 
         @foreach($inputs as $key => $value)
@@ -194,27 +203,13 @@
         </div>
     @endforeach
   
-        {{-- @foreach($inputs as $key => $value)
-            <div class=" add-input">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.{{ $value }}">
-                            @error('name.'.$value) <span class="text-danger error">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <input type="text" class="form-control" wire:model="phone.{{ $value }}" placeholder="Enter phone">
-                            @error('phone.'.$value) <span class="text-danger error">{{ $message }}</span>@enderror
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-danger btn-sm" wire:click.prevent="remove({{$key}})">Remove</button>
-                    </div>
-                </div>
-            </div>
-        @endforeach --}}
+       
+
+
+
+
+
+
         <div><span class="text-danger"> {{ session('finalizado') }}</span></div>
         <div class="row">
             <div class="col-md-12">
