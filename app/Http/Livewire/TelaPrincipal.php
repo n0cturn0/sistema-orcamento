@@ -38,7 +38,12 @@ class TelaPrincipal extends Component
         //Pega ultimo número da tabela de controle dos números de orçamento
         $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
         // seta para objeto orcamento o valor doultimo id da tabela de controle e adiciona +1 
-        $this->orcamentos = DB::table('orcamentos')->where('idorcamento', (intval($last->orcid)+1))->get();
+        $this->orcamentos = DB::table('orcamentos')
+
+        ->join('orcamento_sv','orcamentos.idorcamento','=','orcamento_sv.servico_idorc')
+        // ->join('servicos','orcamentos.idorcamento','=','servicos.servico_idorc')
+        ->where('orcamentos.idorcamento', (intval($last->orcid)+1))->groupBy('orcamento_sv.servico_idorc')->toSql();
+         dd($this->orcamentos);
         $produto = Produto::all();
         $cliente = Cliente::all();
         $servico = Servico::all();
@@ -60,6 +65,7 @@ class TelaPrincipal extends Component
     private function resetInputFields(){
         $this->name = '';
         $this->phone = '';
+        $this->servicoid = '';
        
     }
     
@@ -115,30 +121,44 @@ class TelaPrincipal extends Component
         //     ]
         // );
    
-       
-        foreach ($this->name as $key => $value) {
-            $get_produto =  DB::table('produtos')->where('id',  $this->name[$key] )->first();
-            $get_servico =  DB::table('servicos')->where('id',  $this->servicoid[$key] )->first();
-            $total = ($get_produto->preco * intval($this->phone[$key]));
-            
-            DB::table('orcamentos')->insert([
-                [
-                'item'            => $get_produto->produto, 
-                'itemquantidade'    => $this->phone[$key],
-                'idorcamento'       => (intval($last->orcid+1)),
-                'itempreco'         => $get_produto->preco,
-                'valortoral'        => $total,
-                'servico'           => $get_servico->servico,
-                'servico_preco'     => $get_servico->preco
+        if (!empty($this->name)) {
+            foreach ($this->name as $key => $value) {
+                $get_produto =  DB::table('produtos')->where('id',  $this->name[$key] )->first();
                 
+                $total = ($get_produto->preco * intval($this->phone[$key]));
                
-                ]
                 
-            ]);
-            
-            // Orcamento::create(['modelo' => $this->name[$key]]);
-
+                DB::table('orcamentos')->insert([
+                    [
+                    'item'            => $get_produto->produto, 
+                    'itemquantidade'    => $this->phone[$key],
+                    'idorcamento'       => (intval($last->orcid+1)),
+                    'itempreco'         => $get_produto->preco,
+                    'valortoral'        => $total,
+                    
+                    ]
+                    
+                ]);
+            }
         }
+        
+            foreach ($this->servicoid as $key => $value){
+                $get_servico =  DB::table('servicos')->where('id',  $this->servicoid[$key] )->first();
+                $total_sv = 0;
+                $total_sv += $get_servico->preco;
+
+                DB::table('orcamento_sv')->insert([
+                    'servico'           => $get_servico->servico,
+                    'servico_valunitario'     => $get_servico->preco,
+                    'servico_idorc'     => (intval($last->orcid+1)),
+                    'servico_valtotal'  => $total_sv
+                ]);
+            }
+            
+            
+        
+
+        
   
         $this->inputs = [];
    

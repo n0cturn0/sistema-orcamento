@@ -102,7 +102,7 @@
     @endphp
         <tr>
             
-            <td>{{ $value->item }}</td>
+            <td>{{ $value->item }} / {{$value->servico}} </td>
             <td>{{ $value->itemquantidade }}</td>
             <td>{{ $value->itempreco }}</td>
             <td>{{ $value->valortoral }}</td>
