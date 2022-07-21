@@ -17,6 +17,7 @@ class TelaPrincipal extends Component
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
+    public $show = true;
 
     public function add($i)
     {
@@ -75,7 +76,7 @@ class TelaPrincipal extends Component
 
     public function identificacao()
     {
-        
+        $show = false; 
         
     $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
     $now = date("Y-m-d");
@@ -94,7 +95,7 @@ class TelaPrincipal extends Component
     public function store()
     {
         $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
-        //Coverte data Mysql Formtat
+       
         
          
         // $validatedDate = $this->validate([
@@ -113,12 +114,15 @@ class TelaPrincipal extends Component
    
        
         foreach ($this->name as $key => $value) {
-
+            $get_produto =  DB::table('produtos')->where('id',  $this->name[$key] )->first();
+            $total = ($get_produto->preco * intval($this->phone[$key]));
             DB::table('orcamentos')->insert([
                 [
-                'item'            => $this->name[$key], 
+                'item'            => $get_produto->produto, 
                 'itemquantidade'    => $this->phone[$key],
-                'idorcamento'       => (intval($last->orcid+1))
+                'idorcamento'       => (intval($last->orcid+1)),
+                'itempreco'         => $get_produto->preco,
+                'valortoral'        => $total
                 
                
                 ]

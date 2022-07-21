@@ -12,7 +12,7 @@
 
                         <div class=" add-input">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect3">Previsão de entrega</label>
                                         <input type="text" data-mask="00/00/0000" class="form-control" placeholder="Digite a data" required wire:model="dataentradaform">
@@ -20,10 +20,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect3">Cliente</label>
                                         <select class="form-control form-control-sm" id="exampleFormControlSelect3" wire:model="idclienteinsert">
+                                            <option></option>
                                             @foreach ($clienteform as $item)
                                             <option value="{{$item->id}}">{{$item->cliente}}</option>
                                                 
@@ -39,11 +40,11 @@
                             <div class="row">
                                 
 
-                                <div class="col-md-5">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect3">Marca / Modelo</label>
                                         <select class="form-control form-control-sm" id="exampleFormControlSelect3" wire:model="marcaemodeloinsert">
-                                            <option>Escolha uma opção</option>
+                                            <option></option>
                                             @foreach ($marcaemodelo as $item)
                                             <option value="{{$item->marca}}-{{$item->modelo}}">{{$item->marca}}-{{$item->modelo}}</option>
                                                 
@@ -57,7 +58,8 @@
 
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <button type="button" wire:click.prevent="identificacao()" class="btn btn-success btn-sm">Adicionar </button>
+                                    <button type="button" wire:click.prevent="identificacao()"      class="btn btn-success btn-sm" wire:loading.attr="disabled" >Adicionar </button>
+                                    
                                 </div>
                             </div>
 
@@ -83,25 +85,48 @@
     </div>
 @endif
 
-<table class="table table-bordered">
+<table class="table ">
     <thead>
         <th>Servoço / Produto</th>
         <th>Quantidade</th>
+        <th>Valor unitário</th>
+        <th>Sub Total</th>
     </thead>
-   
+   @php 
+   $var_total = 0;
+   @endphp
+   <tbody>
     @foreach($orcamentos as $key => $value)
+    @php 
+    $var_total += $value->valortoral;
+    @endphp
         <tr>
             
-            <td>{{ $value->modelo }}</td>
+            <td>{{ $value->item }}</td>
             <td>{{ $value->itemquantidade }}</td>
+            <td>{{ $value->itempreco }}</td>
+            <td>{{ $value->valortoral }}</td>
+            
             
         </tr>
     @endforeach
+   </tbody>
+   <tfoot>
+    <tr>
+            
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><strong>TOTAL</strong></td>
+        <td><strong>{{ $var_total }}</strong></td>
+        
+        
+    </tr>
+   </tfoot>
 </table>
    
    <br><br>
   
-    <form>
+    <form class="form-inline">
         <div class=" add-input">
             
 
@@ -128,7 +153,7 @@
                         <label for="exampleFormControlSelect3">Escolha o produto</label>
                         <select class="form-control form-control-sm" id="exampleFormControlSelect3"  wire:model="name.0" >
                        @foreach ($produto as $item)
-                         <option value="{{$item->produto}}" >{{$item->produto}}</option>
+                         <option value="{{$item->id}}" >{{$item->produto}}</option>
                        @endforeach
                     </select>
                         {{-- <input type="text" class="form-control" placeholder="Enter Name" wire:model="name.0"> --}}
@@ -143,9 +168,10 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="form-group">
+                    
+                        
                     <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">+Adicionar</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
