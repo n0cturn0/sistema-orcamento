@@ -47,40 +47,40 @@
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Oficial <span class="text-black fw-bold">Estacionário</span></h1>
+            <h1 class="welcome-text">Oficial <span class="text-black fw-bold">Estacionários</span></h1>
             <h3 class="welcome-sub-text">Assistência Técnica </h3>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item dropdown d-none d-lg-block">
-            <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
+            <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> OPÇÕES </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
               <a class="dropdown-item py-3" >
-                <p class="mb-0 font-weight-medium float-left">Select category</p>
+                <p class="mb-0 font-weight-medium float-left"></p>
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
+              <a href="./telaorcamento" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap Bundle </p>
-                  <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">ORÇAMENTOS </p>
+                  <p class="fw-light small-text mb-0">Adicionar</p>
                 </div>
               </a>
-              <a class="dropdown-item preview-item">
+              <a href="./produto" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
-                  <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">PRODUTOS</p>
+                  <p class="fw-light small-text mb-0">Adicionar</p>
                 </div>
               </a>
-              <a class="dropdown-item preview-item">
+              <a href="./servico" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
-                  <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">SERVIÇOS</p>
+                  <p class="fw-light small-text mb-0">Adicionar</p>
                 </div>
               </a>
-              <a class="dropdown-item preview-item">
+              <a href="cliente" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle</p>
-                  <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">CLIENTES</p>
+                  <p class="fw-light small-text mb-0">Adicionar</p>
                 </div>
               </a>
             </div>
@@ -383,7 +383,7 @@
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">By <a href="https://github.com/n0cturn0//" target="_blank">Luiz Augusto</a></span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Oficial Estacionário © 2021. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Oficial Estacionários © 2021. All rights reserved.</span>
           </div>
         </footer>
         <!-- partial -->
