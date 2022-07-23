@@ -14,7 +14,7 @@ use Livewire\Component;
 //https://www.codecheef.org/article/laravel-livewire-dynamically-add-more-input-fields-example
 class TelaPrincipal extends Component
 {
-    public $orcamentos, $name, $servicoid, $dataentradaform, $phone, $cliente, $contact_id, $idorcamentoinsert, $insert_prev, $idclienteinsert, $marcaemodeloinsert;
+    public $orcamentos, $orcamentos_sv,$identificacao, $totalfinal, $name, $servicoid, $dataentradaform, $phone, $cliente, $contact_id, $idorcamentoinsert, $insert_prev, $idclienteinsert, $marcaemodeloinsert;
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -38,12 +38,11 @@ class TelaPrincipal extends Component
         //Pega ultimo número da tabela de controle dos números de orçamento
         $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
         // seta para objeto orcamento o valor doultimo id da tabela de controle e adiciona +1 
-        $this->orcamentos = DB::table('orcamentos')
-
-        ->join('orcamento_sv','orcamentos.idorcamento','=','orcamento_sv.servico_idorc')
-        // ->join('servicos','orcamentos.idorcamento','=','servicos.servico_idorc')
-        ->where('orcamentos.idorcamento', (intval($last->orcid)+1))->groupBy('orcamento_sv.servico_idorc')->toSql();
-         dd($this->orcamentos);
+        $this->orcamentos = DB::table('orcamentos')->where('idorcamento', '=', (intval($last->orcid)+1))->get();
+        $this->orcamentos_sv = DB::table('orcamento_sv')->where('servico_idorc', '=', (intval($last->orcid)+1))->get();
+        $idorc= (intval($last->orcid)+1);
+        $select_idetificacao = "select * from clientes inner join controle_orcamento   on controle_orcamento.cliente_id = clientes.id where controle_orcamento.idorcamento = $idorc ";
+        $this->identificacao = DB::select($select_idetificacao);
         $produto = Produto::all();
         $cliente = Cliente::all();
         $servico = Servico::all();
@@ -120,8 +119,9 @@ class TelaPrincipal extends Component
         //         'phone.*.required' => 'phone field is required',
         //     ]
         // );
-   
+       
         if (!empty($this->name)) {
+           
             foreach ($this->name as $key => $value) {
                 $get_produto =  DB::table('produtos')->where('id',  $this->name[$key] )->first();
                 
@@ -135,13 +135,14 @@ class TelaPrincipal extends Component
                     'idorcamento'       => (intval($last->orcid+1)),
                     'itempreco'         => $get_produto->preco,
                     'valortoral'        => $total,
-                    
+                    'id_item'           => $this->name[$key]
                     ]
                     
                 ]);
             }
         }
         
+        if (!empty($this->servicoid)) {
             foreach ($this->servicoid as $key => $value){
                 $get_servico =  DB::table('servicos')->where('id',  $this->servicoid[$key] )->first();
                 $total_sv = 0;
@@ -151,10 +152,11 @@ class TelaPrincipal extends Component
                     'servico'           => $get_servico->servico,
                     'servico_valunitario'     => $get_servico->preco,
                     'servico_idorc'     => (intval($last->orcid+1)),
-                    'servico_valtotal'  => $total_sv
+                    'servico_valtotal'  => $total_sv,
+                    'id_sv'             => $this->servicoid[$key]
                 ]);
             }
-            
+        }
             
         
 
