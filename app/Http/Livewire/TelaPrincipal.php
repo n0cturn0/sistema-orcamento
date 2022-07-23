@@ -11,7 +11,7 @@ use App\Models\Produto;
 use App\Models\Servico;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-//https://www.codecheef.org/article/laravel-livewire-dynamically-add-more-input-fields-example
+
 class TelaPrincipal extends Component
 {
     public $orcamentos, $orcamentos_sv,$identificacao, $totalfinal, $name, $servicoid, $dataentradaform, $phone, $cliente, $contact_id, $idorcamentoinsert, $insert_prev, $idclienteinsert, $marcaemodeloinsert;
