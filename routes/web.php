@@ -29,6 +29,8 @@ Route::get('/novo', [\App\Http\Controllers\OrcamentoController::class,'novoorcam
 // Route::get('/telaorcamento', [\App\Http\Controllers\OrcamentoController::class,'tempo'])->name('temp');
 //PDF
 Route::get('pdf', [\App\Http\Controllers\PdfController::class,'generatePDF'])->name('pdf');
+Route::get('lista-orcamento', [\App\Http\Controllers\PdfController::class,'lista'])->name('lista-orcamentos');
+
 
 Route::get('/', function () {
     return view('welcome');
