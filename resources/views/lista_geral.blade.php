@@ -1,9 +1,7 @@
 @extends('template');
 @section('listageral')
-@if(!empty($paginate) && $paginate->count())
-@else
-Not Data
-@endif
+
+
 <table class="table table-bordered ">
     <thead >
             <th>Data de Entrada</th>
@@ -13,7 +11,7 @@ Not Data
             <th>ORCAMENTO nº</th>
     </thead>
     <tbody>
-        @foreach ($identificacao as $item)
+        @foreach ($select_identificacao as $item)
             
         
       <tr>
@@ -21,7 +19,7 @@ Not Data
         <td>{{date("d-m-Y", strtotime($item->datadesaida));}}</td>
         <td>{{$item->equipamento}}</td>
         <td>{{$item->cliente}}</td>
-        <td><h2>{{$item->idorcamento}}</h2></td>
+        <td><a href="{{url("orcamentos/$item->idorcamento")}}"><h2>{{$item->idorcamento}}</h2></a></td>
       </tr>
       @endforeach
    
@@ -31,7 +29,8 @@ Not Data
      
     </tbody>
     </table>
-    <h5>Pagination:</h5>
-    {{ $paginate->links() }}
+    
+    {{$select_identificacao->links()}}
+   
 
 @endsection

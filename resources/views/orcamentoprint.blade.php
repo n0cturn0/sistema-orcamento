@@ -1,9 +1,10 @@
-@extends('template')
-@section('lista_orcamento')
-<div>
+@extends('template');
+@section('impressaopdf')
+
+    <h1>{{ $title }}</h1>
+    <p>{{ $date }}</p>
+
     
-    <!-- INICIO TABELA -->
-   <a href="{{url('/gerapdf/'.$id)}}"> IMPRIMIR </a>
     <table class="table table-bordered table-dark">
         <thead >
                 <th>Data de Entrada</th>
@@ -97,13 +98,12 @@
         </tr>
        </tfoot>
     </table>
-    <!-- FIM DA TABELA -->
+    @endsection
+    
 
 
 
 
 
 
- </div>
- 
-@endsection
+    

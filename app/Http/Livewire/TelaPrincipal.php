@@ -9,12 +9,14 @@ use App\Models\Cliente;
 use App\Models\Orcamento;
 use App\Models\Produto;
 use App\Models\Servico;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use PDF;
 
 class TelaPrincipal extends Component
 {
-    public $orcamentos, $orcamentos_sv,$identificacao, $totalfinal, $name, $servicoid, $dataentradaform, $phone, $cliente, $contact_id, $idorcamentoinsert, $insert_prev, $idclienteinsert, $marcaemodeloinsert;
+    public $orcamentos, $orcamentos_sv,$identificacao, $idpdf, $totalfinal, $name, $servicoid, $dataentradaform, $phone, $cliente, $contact_id, $idorcamentoinsert, $insert_prev, $idclienteinsert, $marcaemodeloinsert;
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -78,9 +80,10 @@ class TelaPrincipal extends Component
         ]);
         session()->flash('finalizado', 'Orçamento Finalizado');
            $this->reset();
-
+        $this->idpdf = $inser_val;
 
     }
+    
 
     public function identificacao()
     {
