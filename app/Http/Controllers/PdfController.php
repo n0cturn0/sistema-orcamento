@@ -117,7 +117,7 @@ class PdfController extends Controller
             'date' => date('m/d/Y')
         ];
           
-        $pdf = PDF::loadView('myPDF', $data);
+        $pdf = PDF::loadView('orcamentoprint', $data);
     
         return $pdf->download('itsolutionstuff.pdf');
 
