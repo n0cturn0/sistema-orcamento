@@ -279,6 +279,9 @@
            @yield('orcamentoview')
            @yield('telaprincipal')
            @yield('inicioorcamento')
+           @yield('lista_orcamento')
+           @yield('listageral')
+           @yield('impressaopdf')
             {{-- <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">

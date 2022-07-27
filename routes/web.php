@@ -27,6 +27,11 @@ Route::get('/produto/remove/{id}', [\App\Http\Controllers\ProdutoController::cla
 Route::get('telaorcamento', [\App\Http\Controllers\OrcamentoController::class,'index'])->name('telacriaorcamento');
 Route::get('/novo', [\App\Http\Controllers\OrcamentoController::class,'novoorcamento'])->name('show');
 // Route::get('/telaorcamento', [\App\Http\Controllers\OrcamentoController::class,'tempo'])->name('temp');
+//PDF
+Route::get('pdf', [\App\Http\Controllers\PdfController::class,'generatePDF'])->name('pdf');
+Route::get('lista-orcamento', [\App\Http\Controllers\PdfController::class,'lista'])->name('lista-orcamentos');
+Route::get('orcamentos/{id}', [\App\Http\Controllers\PdfController::class,'orcamentos'])->name('orcamento-detalhe');
+Route::get('gerapdf/{id}', [\App\Http\Controllers\PdfController::class,'gerapdf'])->name('gera-pdf');
 
 
 Route::get('/', function () {
