@@ -6,11 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-<<<<<<< HEAD
+
         "codedge/laravel-fpdf": "^1.9",
-=======
-        "barryvdh/laravel-dompdf": "^2.0",
->>>>>>> 9e30c10cd843b52f00b792813d49d8f4fb14287b
+
+
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
