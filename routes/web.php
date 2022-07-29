@@ -29,7 +29,7 @@ Route::get('/novo', [\App\Http\Controllers\OrcamentoController::class,'novoorcam
 // Route::get('/telaorcamento', [\App\Http\Controllers\OrcamentoController::class,'tempo'])->name('temp');
 //PDF
 Route::get('pdf', [\App\Http\Controllers\PdfController::class,'generatePDF'])->name('pdf');
-Route::get('lista-orcamento', [\App\Http\Controllers\PdfController::class,'lista'])->name('lista-orcamentos');
+Route::get('lista-orcamento', [\App\Http\Controllers\PdfsController::class,'lista'])->name('lista-orcamentos');
 Route::get('orcamentos/{id}', [\App\Http\Controllers\PdfController::class,'orcamentos'])->name('orcamento-detalhe');
 Route::get('gerapdf/{id}', [\App\Http\Controllers\PdfController::class,'gerapdf'])->name('gera-pdf');
 
