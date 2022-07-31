@@ -32,7 +32,7 @@ Route::get('/novo', [\App\Http\Controllers\OrcamentoController::class,'novoorcam
 Route::get('pdf', [\App\Http\Controllers\PdfController::class,'generatePDF'])->name('pdf');
 Route::get('lista-orcamento', [\App\Http\Controllers\PdfsController::class,'lista'])->name('lista-orcamentos');
 Route::get('orcamentos/{id}', [\App\Http\Controllers\PdfsController::class,'orcamentos'])->name('orcamento-detalhe');
-Route::get('gerapdf', [\App\Http\Controllers\TesteController::class,'index'])->name('gera-pdf');
+Route::get('gerapdf/{id}', [\App\Http\Controllers\PdfsController::class,'gerapdf'])->name('gera-pdf');
 
 
 Route::get('/', function () {
