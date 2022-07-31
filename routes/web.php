@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\CriaOrcamento;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TesteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,8 @@ Route::get('/novo', [\App\Http\Controllers\OrcamentoController::class,'novoorcam
 //PDF
 Route::get('pdf', [\App\Http\Controllers\PdfController::class,'generatePDF'])->name('pdf');
 Route::get('lista-orcamento', [\App\Http\Controllers\PdfsController::class,'lista'])->name('lista-orcamentos');
-Route::get('orcamentos/{id}', [\App\Http\Controllers\PdfController::class,'orcamentos'])->name('orcamento-detalhe');
-Route::get('gerapdf/{id}', [\App\Http\Controllers\PdfController::class,'gerapdf'])->name('gera-pdf');
+Route::get('orcamentos/{id}', [\App\Http\Controllers\PdfsController::class,'orcamentos'])->name('orcamento-detalhe');
+Route::get('gerapdf', [\App\Http\Controllers\TesteController::class,'index'])->name('gera-pdf');
 
 
 Route::get('/', function () {
