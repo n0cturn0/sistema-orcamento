@@ -111,7 +111,7 @@ class PdfsController extends Controller
 
         $fpdf = new FpdfFpdf();
         $fpdf->AddPage();
-        $fpdf->SetFont('Courier', '', 14);
+        $fpdf->SetFont('Courier', '', 12);
         foreach($identificacao  as $cliente)
         {
             
@@ -136,31 +136,27 @@ class PdfsController extends Controller
         {
             
             $fpdf->Text(10,100, "$orca->servico");
-            $fpdf->Text(80,100, "$orca->servico_valunitario");
+            $fpdf->Text(135,100, "Sub Total :$orca->servico_valunitario");
             $total_servico = $orca->servico_valtotal;
         }
         $limitador = 100;
-        $espaco = 5;
+        $espaco = 2;
 
-       
-           
-            
-               
-                    foreach ($orcamentos as $values)
-                    {
-                        for ($i = 1; $i <= $contador; $i++) {
-                        $loop = ($limitador+($i*$espaco));
-                     $fpdf->Text(10,$loop, "$values->item");
-                    
-                    }
-                    $limitador = $loop;
-                   
-                    
-                }
+        foreach ($orcamentos as $values)
+        {
+        for ($i = 1; $i <= $contador; $i++) {
+        $loop = ($limitador+($i*$espaco));
+        }
+        $fpdf->Text(10,$loop, "$values->item");
+        $fpdf->Text(45,$loop, "Qtdade :$values->itemquantidade");
+        $fpdf->Text(80,$loop, "Valor unitario :$values->itempreco");
+        $fpdf->Text(135,$loop, "Sub Total :$values->valortoral");
+        $limitador = $loop;
+        }
+              
 
 
-
-                // $imitador = $loop;
+                
              
         
         
