@@ -48,7 +48,7 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Atualizar Preço do produto</h4>
+                  <h4 class="card-title">Atualizar Preço do serviço</h4>
                  
                   <form class="forms-sample" wire:submit.prevent="atualizapreco">
 
@@ -118,7 +118,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Apagar produto</h4>
+                  <h4 class="card-title">Apagar Serviço</h4>
                  
                   <div class="table-responsive">
                     <table class="table">
