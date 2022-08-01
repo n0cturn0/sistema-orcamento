@@ -1,12 +1,13 @@
 <?php
+namespace App\Http\Livewire;
 use App\Models\Modelo;
 use App\Models\Orcamento;
 use Illuminate\Http\Request;
 use Illuminate\Database;
-namespace App\Http\Livewire;
+
 
 use App\Models\Cliente;
-use App\Models\Orcamento;
+
 use App\Models\Produto;
 use App\Models\Servico;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
