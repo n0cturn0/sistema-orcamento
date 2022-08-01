@@ -33,15 +33,15 @@ Route::get('pdf', [\App\Http\Controllers\PdfController::class,'generatePDF'])->n
 Route::get('lista-orcamento', [\App\Http\Controllers\PdfsController::class,'lista'])->name('lista-orcamentos');
 Route::get('orcamentos/{id}', [\App\Http\Controllers\PdfsController::class,'orcamentos'])->name('orcamento-detalhe');
 Route::get('gerapdf/{id}', [\App\Http\Controllers\PdfsController::class,'gerapdf'])->name('gera-pdf');
+Route::get('/', [\App\Http\Controllers\OrcamentoController::class,'index'])->name('telacriaorcamento');
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 //TEMPLATE BASE
-Route::get('/template', function () {
-    return view('template');
-});
+// Route::get('/template', function () {
+//     return view('template');
+// });
 
 // Route::get('/cliente', function () {
 //     return view('cadastrocliente');

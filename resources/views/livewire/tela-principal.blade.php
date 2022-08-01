@@ -269,7 +269,7 @@
             <div class="col-md-12">
                 <button type="button" wire:click.prevent="store()" class="btn btn-success btn-sm">Adicionar Item</button>
                 <button type="button" wire:click.prevent="finalizar()" class="btn btn-danger btn-sm">Encerrar Orçamento</button>
-                <button type="button" wire:click.prevent="pdf({{$this->idpdf}})" class="btn btn-success btn-sm">Imprimer</button>
+               
             </div>
         </div>
   

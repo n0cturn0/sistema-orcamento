@@ -47,7 +47,7 @@
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Oficial <span class="text-black fw-bold">Estacionários</span></h1>
+         <a href="{{url('telaorcamento')}}">   <h1 class="welcome-text">Oficial <span class="text-black fw-bold">Estacionários</span></h1> </a>
             <h3 class="welcome-sub-text">Assistência Técnica </h3>
           </li>
         </ul>
@@ -62,7 +62,7 @@
               <a href="lista-orcamento" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">PDF's </p>
-                  <p class="fw-light small-text mb-0">Visualizar</p>
+                  <p class="fw-light small-text mb-0"></p>
                 </div>
               </a>
               <a href="telaorcamento" class="dropdown-item preview-item">

@@ -45,7 +45,7 @@ class PdfsController extends Controller
 
     public function orcamentos($id=null)
     {
-        
+       
         //Pega ultimo número da tabela de controle dos números de orçamento
        
         // seta para objeto orcamento o valor doultimo id da tabela de controle e adiciona +1 
