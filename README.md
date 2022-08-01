@@ -25,11 +25,11 @@ Esse é um pequeno e simples controle de orçamento, escrito em Laravel e Livewi
 
 
 
-## Dúvidas
-n0cturn0.debian@gmail.com 
-PHP 8
-LARAVEL 8
-Mysql
+## Dúvidas / Instalação
+<p>n0cturn0.debian@gmail.com </p>
+<p>Clonar projeto</p>
+<p>Não executar migration. Entidades diferente da versão existente na migrations</p>
+
 
 
 
