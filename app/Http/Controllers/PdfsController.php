@@ -82,7 +82,7 @@ class PdfsController extends Controller
        
         // seta para objeto orcamento o valor doultimo id da tabela de controle e adiciona +1 
         $contador = count ($orcamentos = DB::table('orcamentos')->where('idorcamento', '=', $id)->get());
-        $orcamentos_sv = DB::table('orcamento_sv')->where('servico_idorc', '=', $id)->get();
+        $contador_sv = count($orcamentos_sv = DB::table('orcamento_sv')->where('servico_idorc', '=', $id)->get());
         // $idorc= (intval($id)+1);
         $select_idetificacao = "select * from clientes inner join controle_orcamento   on controle_orcamento.cliente_id = clientes.id where controle_orcamento.idorcamento = $id ";
         
@@ -121,26 +121,45 @@ class PdfsController extends Controller
             $fpdf->Text(10,25, "CIDADE $cliente->cidade");
             $fpdf->Text(10,30, "BAIRRO $cliente->bairro");
             $fpdf->Text(10,35, "CEP $cliente->cep");
-            $fpdf->Text(10,40, "RUA $cliente->rua");
-            $fpdf->Text(80,40, "NÚMERO $cliente->numero");
+            $rua = iconv('UTF-8', 'windows-1252', $cliente->rua);
+            $fpdf->Text(10,40, "RUA $rua");
+            $numero = iconv('UTF-8', 'windows-1252', 'NÚMERO');
+            $fpdf->Text(80,40, "$numero $cliente->numero");
             $fpdf->Text(10,45, "TELEFONE: $cliente->telefone");
             $fpdf->Text(10,50, "CELULAR: $cliente->celular");
             $fpdf->Text(10,55, "EMAIL: $cliente->email");
             $fpdf->Text(10,70, "EQUIPAMENTO: $cliente->equipamento");
             $fpdf->Text(10,75, "Data de Entrada do Equipamento: $cliente->datadeentrada");
             $fpdf->Text(10,80, "Previsão de saída: $cliente->datadesaida");
-            $fpdf->Text(10,85, "ORÇAMENTO $cliente->idorcamento");
+            $str = iconv('UTF-8', 'windows-1252', 'ORÇAMENTO');
+            $fpdf->Text(10,85, "$str $cliente->idorcamento");
         }
-       
+       $espaco_sv = 5;
+       $limitador_sv = 85;
+       $semi_sv =0;
         foreach($orcamentos_sv  as $orca)
         {
+            for ($i = 1; $i <= $contador_sv; $i++)
+            {
+                $loop_sv=($limitador_sv+($i*$espaco_sv));
+            }
             
-            $fpdf->Text(10,100, "$orca->servico");
-            $fpdf->Text(135,100, "Sub Total :$orca->servico_valunitario");
-            $total_servico = $orca->servico_valtotal;
+            $fpdf->Text(10,$loop_sv, "$orca->servico");
+            $fpdf->Text(135,$loop_sv, "Sub Total :$orca->servico_valunitario");
+            $limitador_sv = $loop_sv;
+            $semi_sv += $orca->servico_valunitario;
         }
-        $limitador = 100;
+        
+
+
+
+
+
+        
+        $total_servico = $orca->servico_valtotal;
+        $limitador = $loop_sv;
         $espaco = 2;
+        $semi = 0;
 
         foreach ($orcamentos as $values)
         {
@@ -152,8 +171,12 @@ class PdfsController extends Controller
         $fpdf->Text(80,$loop, "Valor unitario :$values->itempreco");
         $fpdf->Text(135,$loop, "Sub Total :$values->valortoral");
         $limitador = $loop;
+        $semi += $values->valortoral++;
+
         }
-              
+        $total = ($semi+$semi_sv);
+        $fpdf->Text(10,($loop+5), "T O T A L : $total");
+        $limitador = $loop;
 
 
                 
