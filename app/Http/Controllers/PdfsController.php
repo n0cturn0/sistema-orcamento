@@ -108,10 +108,11 @@ class PdfsController extends Controller
      
            
         // dd($orcamentos);
-
+       
         $fpdf = new FpdfFpdf();
         $fpdf->AddPage();
         $fpdf->SetFont('Courier', '', 12);
+        $fpdf->Text(10,5, "OFICIAL ESTACIONÁRIOS");
         foreach($identificacao  as $cliente)
         {
             
@@ -175,7 +176,8 @@ class PdfsController extends Controller
 
         }
         $total = ($semi+$semi_sv);
-        $fpdf->Text(10,($loop+5), "T O T A L : $total");
+        $fpdf->SetFont('Courier', 'B', 12);
+        $fpdf->Text(110,($loop+20), "T O T A L : $total");
         $limitador = $loop;
 
 
