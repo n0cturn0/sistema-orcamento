@@ -131,8 +131,11 @@ class PdfsController extends Controller
             $fpdf->Text(10,50, "CELULAR: $cliente->celular");
             $fpdf->Text(10,55, "EMAIL: $cliente->email");
             $fpdf->Text(10,70, "EQUIPAMENTO: $cliente->equipamento");
-            $fpdf->Text(10,75, "Data de Entrada do Equipamento: $cliente->datadeentrada");
-            $fpdf->Text(10,80, "Previsão de saída: $cliente->datadesaida");
+            $datadesaida = date('d-m-Y', strtotime($cliente->datadesaida));
+            $dataentrada = date('d-m-Y', strtotime($cliente->datadeentrada));
+            $fpdf->Text(10,75, "Data de Entrada do Equipamento: $dataentrada ");
+            $saida = iconv('UTF-8', 'windows-1252', 'Previsão de saída');
+            $fpdf->Text(10,80, "$saida: $datadesaida");
             $str = iconv('UTF-8', 'windows-1252', 'ORÇAMENTO');
             $fpdf->Text(10,85, "$str $cliente->idorcamento");
         }
@@ -180,7 +183,12 @@ class PdfsController extends Controller
         $fpdf->SetFont('Courier', 'B', 12);
         $fpdf->Text(110,($loop+20), "T O T A L : $total");
         $fpdf->SetFont('Courier', '', 10);
-        $fpdf->Text(10,($loop+170), "Rua Tal ");
+        
+        $endereco = iconv('UTF-8', 'windows-1252', 'Av das Bandeiras 2356 Jardim Nhanhá ');
+       
+        $fpdf->Text(10,($loop+170), "$endereco ");
+        $fpdf->Text(10,($loop+175), "Telefone: 67 3331-4919 whathsapp (67) 99101-5645 ");
+        $fpdf->Text(10,($loop+180), "wendersonmtv@hotmail.com");
         $limitador = $loop;
 
 

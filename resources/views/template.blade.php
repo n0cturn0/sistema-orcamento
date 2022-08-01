@@ -59,19 +59,25 @@
                 <p class="mb-0 font-weight-medium float-left"></p>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="./telaorcamento" class="dropdown-item preview-item">
+              <a href="lista-orcamento" class="dropdown-item preview-item">
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">PDF's </p>
+                  <p class="fw-light small-text mb-0">Visualizar</p>
+                </div>
+              </a>
+              <a href="telaorcamento" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">ORÇAMENTOS </p>
                   <p class="fw-light small-text mb-0">Adicionar</p>
                 </div>
               </a>
-              <a href="./produto" class="dropdown-item preview-item">
+              <a href="produto" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">PRODUTOS</p>
                   <p class="fw-light small-text mb-0">Adicionar</p>
                 </div>
               </a>
-              <a href="./servico" class="dropdown-item preview-item">
+              <a href="servico" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">SERVIÇOS</p>
                   <p class="fw-light small-text mb-0">Adicionar</p>

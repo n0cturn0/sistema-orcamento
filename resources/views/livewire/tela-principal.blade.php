@@ -207,7 +207,7 @@
                 <div class="col-md-2">
                     
                         
-                    <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">+Adicionar</button>
+                    {{-- <button class="btn text-white btn-info btn-sm" wire:click.prevent="add({{$i}})">+Adicionar</button> --}}
                     
                 </div>
             </div>
