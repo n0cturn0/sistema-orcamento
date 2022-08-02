@@ -7,17 +7,17 @@ use App\Models\Cliente;
 use App\Models\Produto;
 use App\Models\Servico;
 use Illuminate\Support\Facades\DB;
-use Codedge\Fpdf\Facades\Fpdf;
-use Codedge\Fpdf\Fpdf\Fpdf as FpdfFpdf;
+// use Codedge\Fpdf\Facades\Fpdf;
+// use Codedge\Fpdf\Fpdf\Fpdf as FpdfFpdf;
+// use PDF;
+use App\Source\Fpdf\Pdf;
+
 
 class PdfsController extends Controller
 {
-    protected $fpdf;
+   
  
-    public function __construct()
-    {
-        $this->fpdf = new Fpdf;
-    }
+ 
    
 
     public function lista ()
@@ -105,55 +105,59 @@ class PdfsController extends Controller
         //     'orcamentos_sv' => $orcamentos_sv
         // ];
             
-     
-           
+            $f = new Pdf();
+            
+        //    $pdf = new Pdf();
+        //    $pdf->AddPage();
+        //    $pdf->Output();
+        //    exit();
         // dd($orcamentos);
        
-        $fpdf = new FpdfFpdf();
-        $fpdf->AddPage();
-        $fpdf->SetFont('Courier', '', 12);
-        $loja =iconv('UTF-8', 'windows-1252', 'OFICIAL ESTACIONÁRIOS');
-        $fpdf->Text(10,5, "$loja");
-        foreach($identificacao  as $cliente)
-        {
+    //     $fpdf = new FpdfFpdf();
+    //     $fpdf->AddPage();
+    //     $fpdf->SetFont('Courier', '', 12);
+    //     $loja =iconv('UTF-8', 'windows-1252', 'OFICIAL ESTACIONÁRIOS');
+    //     $fpdf->Text(10,5, "$loja");
+    //     foreach($identificacao  as $cliente)
+    //     {
             
-            $fpdf->Text(10,10, "CLIENTE:$cliente->cliente");
-            $fpdf->Text(10,15, "CPF: $cliente->cpf");
-            $fpdf->Text(10,20, "CNPJ: $cliente->cnpj");
-            $fpdf->Text(10,25, "CIDADE $cliente->cidade");
-            $fpdf->Text(10,30, "BAIRRO $cliente->bairro");
-            $fpdf->Text(10,35, "CEP $cliente->cep");
-            $rua = iconv('UTF-8', 'windows-1252', $cliente->rua);
-            $fpdf->Text(10,40, "RUA $rua");
-            $numero = iconv('UTF-8', 'windows-1252', 'NÚMERO');
-            $fpdf->Text(80,40, "$numero $cliente->numero");
-            $fpdf->Text(10,45, "TELEFONE: $cliente->telefone");
-            $fpdf->Text(10,50, "CELULAR: $cliente->celular");
-            $fpdf->Text(10,55, "EMAIL: $cliente->email");
-            $fpdf->Text(10,70, "EQUIPAMENTO: $cliente->equipamento");
-            $datadesaida = date('d-m-Y', strtotime($cliente->datadesaida));
-            $dataentrada = date('d-m-Y', strtotime($cliente->datadeentrada));
-            $fpdf->Text(10,75, "Data de Entrada do Equipamento: $dataentrada ");
-            $saida = iconv('UTF-8', 'windows-1252', 'Previsão de saída');
-            $fpdf->Text(10,80, "$saida: $datadesaida");
-            $str = iconv('UTF-8', 'windows-1252', 'ORÇAMENTO');
-            $fpdf->Text(10,85, "$str $cliente->idorcamento");
-        }
-       $espaco_sv = 5;
-       $limitador_sv = 85;
-       $semi_sv =0;
-        foreach($orcamentos_sv  as $orca)
-        {
-            for ($i = 1; $i <= $contador_sv; $i++)
-            {
-                $loop_sv=($limitador_sv+($i*$espaco_sv));
-            }
+    //         $fpdf->Text(10,10, "CLIENTE:$cliente->cliente");
+    //         $fpdf->Text(10,15, "CPF: $cliente->cpf");
+    //         $fpdf->Text(10,20, "CNPJ: $cliente->cnpj");
+    //         $fpdf->Text(10,25, "CIDADE $cliente->cidade");
+    //         $fpdf->Text(10,30, "BAIRRO $cliente->bairro");
+    //         $fpdf->Text(10,35, "CEP $cliente->cep");
+    //         $rua = iconv('UTF-8', 'windows-1252', $cliente->rua);
+    //         $fpdf->Text(10,40, "RUA $rua");
+    //         $numero = iconv('UTF-8', 'windows-1252', 'NÚMERO');
+    //         $fpdf->Text(80,40, "$numero $cliente->numero");
+    //         $fpdf->Text(10,45, "TELEFONE: $cliente->telefone");
+    //         $fpdf->Text(10,50, "CELULAR: $cliente->celular");
+    //         $fpdf->Text(10,55, "EMAIL: $cliente->email");
+    //         $fpdf->Text(10,70, "EQUIPAMENTO: $cliente->equipamento");
+    //         $datadesaida = date('d-m-Y', strtotime($cliente->datadesaida));
+    //         $dataentrada = date('d-m-Y', strtotime($cliente->datadeentrada));
+    //         $fpdf->Text(10,75, "Data de Entrada do Equipamento: $dataentrada ");
+    //         $saida = iconv('UTF-8', 'windows-1252', 'Previsão de saída');
+    //         $fpdf->Text(10,80, "$saida: $datadesaida");
+    //         $str = iconv('UTF-8', 'windows-1252', 'ORÇAMENTO');
+    //         $fpdf->Text(10,85, "$str $cliente->idorcamento");
+    //     }
+    //    $espaco_sv = 5;
+    //    $limitador_sv = 85;
+    //    $semi_sv =0;
+    //     foreach($orcamentos_sv  as $orca)
+    //     {
+    //         for ($i = 1; $i <= $contador_sv; $i++)
+    //         {
+    //             $loop_sv=($limitador_sv+($i*$espaco_sv));
+    //         }
             
-            $fpdf->Text(10,$loop_sv, "$orca->servico");
-            $fpdf->Text(135,$loop_sv, "Sub Total :$orca->servico_valunitario");
-            $limitador_sv = $loop_sv;
-            $semi_sv += $orca->servico_valunitario;
-        }
+    //         $fpdf->Text(10,$loop_sv, "$orca->servico");
+    //         $fpdf->Text(135,$loop_sv, "Sub Total :$orca->servico_valunitario");
+    //         $limitador_sv = $loop_sv;
+    //         $semi_sv += $orca->servico_valunitario;
+    //     }
         
 
 
@@ -161,35 +165,35 @@ class PdfsController extends Controller
 
 
         
-        $total_servico = $orca->servico_valtotal;
-        $limitador = $loop_sv;
-        $espaco = 2;
-        $semi = 0;
+    //     $total_servico = $orca->servico_valtotal;
+    //     $limitador = $loop_sv;
+    //     $espaco = 2;
+    //     $semi = 0;
 
-        foreach ($orcamentos as $values)
-        {
-        for ($i = 1; $i <= $contador; $i++) {
-        $loop = ($limitador+($i*$espaco));
-        }
-        $fpdf->Text(10,$loop, "$values->item");
-        $fpdf->Text(45,$loop, "Qtdade :$values->itemquantidade");
-        $fpdf->Text(80,$loop, "Valor unitario :$values->itempreco");
-        $fpdf->Text(135,$loop, "Sub Total :$values->valortoral");
-        $limitador = $loop;
-        $semi += $values->valortoral++;
+    //     foreach ($orcamentos as $values)
+    //     {
+    //     for ($i = 1; $i <= $contador; $i++) {
+    //     $loop = ($limitador+($i*$espaco));
+    //     }
+    //     $fpdf->Text(10,$loop, "$values->item");
+    //     $fpdf->Text(45,$loop, "Qtdade :$values->itemquantidade");
+    //     $fpdf->Text(80,$loop, "Valor unitario :$values->itempreco");
+    //     $fpdf->Text(135,$loop, "Sub Total :$values->valortoral");
+    //     $limitador = $loop;
+    //     $semi += $values->valortoral++;
 
-        }
-        $total = ($semi+$semi_sv);
-        $fpdf->SetFont('Courier', 'B', 12);
-        $fpdf->Text(110,($loop+20), "T O T A L : $total");
-        $fpdf->SetFont('Courier', '', 10);
+    //     }
+    //     $total = ($semi+$semi_sv);
+    //     $fpdf->SetFont('Courier', 'B', 12);
+    //     $fpdf->Text(110,($loop+20), "T O T A L : $total");
+    //     $fpdf->SetFont('Courier', '', 10);
         
-        $endereco = iconv('UTF-8', 'windows-1252', 'Av das Bandeiras 2356 Jardim Nhanhá ');
+    //     $endereco = iconv('UTF-8', 'windows-1252', 'Av das Bandeiras 2356 Jardim Nhanhá ');
        
-        $fpdf->Text(10,($loop+170), "$endereco ");
-        $fpdf->Text(10,($loop+175), "Telefone: 67 3331-4919 whathsapp (67) 99101-5645 ");
-        $fpdf->Text(10,($loop+180), "wendersonmtv@hotmail.com");
-        $limitador = $loop;
+    //     $fpdf->Text(10,($loop+170), "$endereco ");
+    //     $fpdf->Text(10,($loop+175), "Telefone: 67 3331-4919 whathsapp (67) 99101-5645 ");
+    //     $fpdf->Text(10,($loop+180), "wendersonmtv@hotmail.com");
+    //     $limitador = $loop;
 
 
                 
@@ -197,8 +201,8 @@ class PdfsController extends Controller
         
         
               
-        $fpdf->Output();
-        exit;
+    //     $fpdf->Output();
+    //     exit;
         
 
 
