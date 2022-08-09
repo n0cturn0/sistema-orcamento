@@ -65,6 +65,13 @@
                   <p class="fw-light small-text mb-0"></p>
                 </div>
               </a>
+              <a href="lista-orcamento" class="dropdown-item preview-item">
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">Cadastro Equipamentos </p>
+                  <a href="marca" class="dropdown-item preview-item"> <p class="fw-light small-text mb-0"> Marca</p></a>
+                  <a href="modelo" class="dropdown-item preview-item"> <p class="fw-light small-text mb-0"> Modelo</p></a>
+                </div>
+              </a>
               <a href="telaorcamento" class="dropdown-item preview-item">
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">ORÇAMENTOS </p>

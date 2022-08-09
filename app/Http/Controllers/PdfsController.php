@@ -146,98 +146,30 @@ class PdfsController extends Controller
         foreach($orcamentos_sv  as $orca)
         {
             $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
-            
             $semi_sv += $orca->servico_valunitario;
         }
-        $pdf->Row(array('',$semi_sv),1,1);
+        $pdf->Row(array('B_font_Produto','B_font_Valor Unitário', 'B_font_Valor Quantidade', 'B_font_Sub Total'),1,1);
+        foreach ($orcamentos as $values)
+        {
+
+        }
+
+
+
+
+
+
+
+
+        $pdf->Row(array('Total de Serviço:',$semi_sv),1,1);
         $pdf->SetTitle(utf8_decode('Orçamento'));
         $pdf->Output('',utf8_decode('Orçamento.pdf'));
             exit();
-        //    $pdf = new Pdf();
-        //    $pdf->AddPage();
-        //    $pdf->Output();
-        //    exit();
-        // dd($orcamentos);
+     
        
-    //     $fpdf = new FpdfFpdf();
-    //     $fpdf->AddPage();
-    //     $fpdf->SetFont('Courier', '', 12);
-    //     $loja =iconv('UTF-8', 'windows-1252', 'OFICIAL ESTACIONÁRIOS');
-    //     $fpdf->Text(10,5, "$loja");
-    //     foreach($identificacao  as $cliente)
-    //     {
-            
-    //         $fpdf->Text(10,10, "CLIENTE:$cliente->cliente");
-    //         $fpdf->Text(10,15, "CPF: $cliente->cpf");
-    //         $fpdf->Text(10,20, "CNPJ: $cliente->cnpj");
-    //         $fpdf->Text(10,25, "CIDADE $cliente->cidade");
-    //         $fpdf->Text(10,30, "BAIRRO $cliente->bairro");
-    //         $fpdf->Text(10,35, "CEP $cliente->cep");
-    //         $rua = iconv('UTF-8', 'windows-1252', $cliente->rua);
-    //         $fpdf->Text(10,40, "RUA $rua");
-    //         $numero = iconv('UTF-8', 'windows-1252', 'NÚMERO');
-    //         $fpdf->Text(80,40, "$numero $cliente->numero");
-    //         $fpdf->Text(10,45, "TELEFONE: $cliente->telefone");
-    //         $fpdf->Text(10,50, "CELULAR: $cliente->celular");
-    //         $fpdf->Text(10,55, "EMAIL: $cliente->email");
-    //         $fpdf->Text(10,70, "EQUIPAMENTO: $cliente->equipamento");
-    //         $datadesaida = date('d-m-Y', strtotime($cliente->datadesaida));
-    //         $dataentrada = date('d-m-Y', strtotime($cliente->datadeentrada));
-    //         $fpdf->Text(10,75, "Data de Entrada do Equipamento: $dataentrada ");
-    //         $saida = iconv('UTF-8', 'windows-1252', 'Previsão de saída');
-    //         $fpdf->Text(10,80, "$saida: $datadesaida");
-    //         $str = iconv('UTF-8', 'windows-1252', 'ORÇAMENTO');
-    //         $fpdf->Text(10,85, "$str $cliente->idorcamento");
-    //     }
-    //    $espaco_sv = 5;
-    //    $limitador_sv = 85;
-    //    $semi_sv =0;
-    //     foreach($orcamentos_sv  as $orca)
-    //     {
-    //         for ($i = 1; $i <= $contador_sv; $i++)
-    //         {
-    //             $loop_sv=($limitador_sv+($i*$espaco_sv));
-    //         }
-            
-    //         $fpdf->Text(10,$loop_sv, "$orca->servico");
-    //         $fpdf->Text(135,$loop_sv, "Sub Total :$orca->servico_valunitario");
-    //         $limitador_sv = $loop_sv;
-    //         $semi_sv += $orca->servico_valunitario;
-    //     }
-        
-
-
-
-
 
         
-    //     $total_servico = $orca->servico_valtotal;
-    //     $limitador = $loop_sv;
-    //     $espaco = 2;
-    //     $semi = 0;
+
 
     //     foreach ($orcamentos as $values)
     //     {
