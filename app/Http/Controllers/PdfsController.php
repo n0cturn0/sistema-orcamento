@@ -105,8 +105,77 @@ class PdfsController extends Controller
         //     'orcamentos_sv' => $orcamentos_sv
         // ];
             
-            $f = new Pdf();
+          
+            $pdf = new Pdf();
+        $pdf->AddPage();
+        $pdf->SetFont('Courier', '', 12);
+       
+        $pdf->SetWidths_dinamico(1);
+        $pdf->SetAligns(array('C'));
+        $pdf->Row(array('B_font_OFICIAL ESTACIONÁRIOS'),0,0);
+        $pdf->SetAligns(array('L'));
+        foreach($identificacao  as $cliente)
+        {
+            $pdf->Row(array("CLIENTE:".$cliente->cliente),0,0);
+            $pdf->Row(array("CPF: ".$cliente->cpf),0,0);
+            $pdf->Row(array("CNPJ: ".$cliente->cnpj),0,0);
+            $pdf->Row(array("CIDADE: ".$cliente->cidade),0,0);
+            $pdf->Row(array("BAIRRO: ".$cliente->bairro),0,0);
+            $pdf->Row(array("CEP: ".$cliente->cep),0,0);
+
+            $rua = iconv('UTF-8', 'windows-1252', $cliente->rua);
+            $pdf->Row(array("RUA ".$rua),0,0);
+            $numero = iconv('UTF-8', 'windows-1252', 'NÚMERO');
+            $pdf->Row(array($numero ." ".$cliente->numero),0,0);
+            $pdf->Row(array("TELEFONE: ".$cliente->telefone),0,0);
+            $pdf->Row(array("CELULAR: ".$cliente->celular),0,0);
+            $pdf->Row(array("EMAIL: ".$cliente->email),0,0);
+            $pdf->Row(array("EQUIPAMENTO: ".$cliente->equipamento),0,0);
+            $datadesaida = date('d-m-Y', strtotime($cliente->datadesaida));
+            $dataentrada = date('d-m-Y', strtotime($cliente->datadeentrada));
+            $pdf->Row(array("Data de Entrada do Equipamento: ".$dataentrada),0,0);
             
+            $pdf->Row(array('Previsão de saída: '.$datadesaida),0,0);
+            $str = iconv('UTF-8', 'windows-1252', 'ORÇAMENTO');
+            $pdf->Row(array($str.": ".$cliente->idorcamento),0,0);
+        }
+        $pdf->Ln(6);
+        $pdf->SetWidths_dinamico(2);
+        $pdf->Row(array('B_font_Serviço','B_font_Valor'),1,1);
+       $semi_sv =0;
+        foreach($orcamentos_sv  as $orca)
+        {
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
+            
+            $semi_sv += $orca->servico_valunitario;
+        }
+        $pdf->Row(array('',$semi_sv),1,1);
+        $pdf->SetTitle(utf8_decode('Orçamento'));
+        $pdf->Output('',utf8_decode('Orçamento.pdf'));
+            exit();
         //    $pdf = new Pdf();
         //    $pdf->AddPage();
         //    $pdf->Output();
@@ -203,7 +272,10 @@ class PdfsController extends Controller
               
     //     $fpdf->Output();
     //     exit;
-        
+  
+
+   
+
 
 
        
