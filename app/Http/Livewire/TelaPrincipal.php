@@ -108,26 +108,11 @@ class TelaPrincipal extends Component
     {
         $last = DB::table('orcamentoid')->orderBy('id', 'DESC')->first();
        
-        
-         
-        // $validatedDate = $this->validate([
-        //         'name.0' => 'required',
-        //         'phone.0' => 'required',
-        //         'name.*' => 'required',
-        //         'phone.*' => 'required',
-        //     ],
-        //     [
-        //         'name.0.required' => 'name field is required',
-        //         'phone.0.required' => 'phone field is required',
-        //         'name.*.required' => 'name field is required',
-        //         'phone.*.required' => 'phone field is required',
-        //     ]
-        // );
        
         if (!empty($this->name)) {
            
             foreach ($this->name as $key => $value) {
-                $get_produto =  DB::table('produtos')->where('id',  $this->name[$key] )->first();
+            $get_produto =  DB::table('produtos')->where('id',  $this->name[$key] )->first();
                 
                 $total = ($get_produto->preco * intval($this->phone[$key]));
                
