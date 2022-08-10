@@ -176,7 +176,7 @@ class PdfsController extends Controller
         $pdf->Row(array("Av das Bandeiras  2356 - Jardim Nhanhá"),0,0);
         $pdf->Row(array("Telefone: 67 3331-4919 whathsapp (67) 99101-5645 "),0,0);
         $pdf->Row(array("wendersonmtv@hotmail.com "),0,0);
-        $pdf->Row(array("B_font_Este orçamento te validade de 30 dias!"),0,0);
+        $pdf->Row(array("B_font_Este orçamento tem validade de 30 dias!"),0,0);
 
 
         
