@@ -123,8 +123,8 @@ class PdfsController extends Controller
             $pdf->Row(array("BAIRRO: ".$cliente->bairro),0,0);
             $pdf->Row(array("CEP: ".$cliente->cep),0,0);
 
-            $rua = iconv('UTF-8', 'windows-1252', $cliente->rua);
-            $pdf->Row(array("RUA ".$rua),0,0);
+           
+            $pdf->Row(array("Rua ".$cliente->rua),0,0);
             $numero = iconv('UTF-8', 'windows-1252', 'NÚMERO');
             $pdf->Row(array($numero ." ".$cliente->numero),0,0);
             $pdf->Row(array("TELEFONE: ".$cliente->telefone),0,0);
@@ -136,8 +136,7 @@ class PdfsController extends Controller
             $pdf->Row(array("Data de Entrada do Equipamento: ".$dataentrada),0,0);
             
             $pdf->Row(array('Previsão de saída: '.$datadesaida),0,0);
-            $str = iconv('UTF-8', 'windows-1252', 'ORÇAMENTO');
-            $pdf->Row(array($str.": ".$cliente->idorcamento),0,0);
+            $pdf->Row(array("B_font_O R Ç A M E N T O:".$cliente->idorcamento),0,0);
         }
         $pdf->Ln(6);
         $pdf->SetWidths_dinamico(2);
@@ -148,40 +147,46 @@ class PdfsController extends Controller
             $pdf->Row(array($orca->servico,$orca->servico_valunitario),0,1);
             $semi_sv += $orca->servico_valunitario;
         }
-        $pdf->Row(array('B_font_Produto','B_font_Valor Unitário', 'B_font_Valor Quantidade', 'B_font_Sub Total'),1,1);
+        $pdf->Row(array('Total de Serviço:',$semi_sv),1,1);
+        $pdf->Ln(6);
+        $pdf->SetWidths_dinamico(4);
+        $pdf->Row(array('B_font_Produto','B_font_Valor Unitário', 'B_font_Quantidade', 'B_font_Sub Total'),1,1);
+        $semi =0;
         foreach ($orcamentos as $values)
         {
-
+        $pdf->Row(array($values->item,$values->itempreco,$values->itemquantidade,$values->valortoral),0,1);
+        $semi += $values->valortoral++;
         }
+        $pdf->Row(array('Total de peças:','','',$semi),1,1);
+        $totalizando = 0;
+        $totalizando = ($semi+$semi_sv);
+        $pdf->Row(array('B_font_T O T A L:','','',$totalizando),0,0,1);
+        $pdf->SetWidths_dinamico(4);
+        $pdf->Row(array('','','', ''),0,0);
+        $pdf->Row(array('','','', ''),0,0);
+        $pdf->Row(array('','','', ''),0,0);
+        $pdf->Row(array('','','', ''),0,0);
+        $pdf->Row(array('','','', ''),0,0);
+
+        
+     
+        $pdf->SetWidths_dinamico(1);
+        $pdf->SetAligns(array('C'));
+
+        $pdf->Row(array("Av das Bandeiras  2356 - Jardim Nhanhá"),0,0);
+        $pdf->Row(array("Telefone: 67 3331-4919 whathsapp (67) 99101-5645 "),0,0);
+        $pdf->Row(array("wendersonmtv@hotmail.com "),0,0);
+        $pdf->Row(array("B_font_Este orçamento te validade de 30 dias!"),0,0);
 
 
-
-
-
-
-
-
-        $pdf->Row(array('Total de Serviço:',$semi_sv),1,1);
+        
         $pdf->SetTitle(utf8_decode('Orçamento'));
         $pdf->Output('',utf8_decode('Orçamento.pdf'));
             exit();
      
        
 
-        
 
-
-    //     foreach ($orcamentos as $values)
-    //     {
-    //     for ($i = 1; $i <= $contador; $i++) {
-    //     $loop = ($limitador+($i*$espaco));
-    //     }
-    //     $fpdf->Text(10,$loop, "$values->item");
-    //     $fpdf->Text(45,$loop, "Qtdade :$values->itemquantidade");
-    //     $fpdf->Text(80,$loop, "Valor unitario :$values->itempreco");
-    //     $fpdf->Text(135,$loop, "Sub Total :$values->valortoral");
-    //     $limitador = $loop;
-    //     $semi += $values->valortoral++;
 
     //     }
     //     $total = ($semi+$semi_sv);
@@ -189,10 +194,10 @@ class PdfsController extends Controller
     //     $fpdf->Text(110,($loop+20), "T O T A L : $total");
     //     $fpdf->SetFont('Courier', '', 10);
         
-    //     $endereco = iconv('UTF-8', 'windows-1252', 'Av das Bandeiras 2356 Jardim Nhanhá ');
+    //     $endereco = iconv('UTF-8', 'windows-1252', '');
        
     //     $fpdf->Text(10,($loop+170), "$endereco ");
-    //     $fpdf->Text(10,($loop+175), "Telefone: 67 3331-4919 whathsapp (67) 99101-5645 ");
+    //     $fpdf->Text(10,($loop+175), "");
     //     $fpdf->Text(10,($loop+180), "wendersonmtv@hotmail.com");
     //     $limitador = $loop;
 
