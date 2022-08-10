@@ -185,38 +185,6 @@ class PdfsController extends Controller
             exit();
      
        
-
-
-
-    //     }
-    //     $total = ($semi+$semi_sv);
-    //     $fpdf->SetFont('Courier', 'B', 12);
-    //     $fpdf->Text(110,($loop+20), "T O T A L : $total");
-    //     $fpdf->SetFont('Courier', '', 10);
-        
-    //     $endereco = iconv('UTF-8', 'windows-1252', '');
-       
-    //     $fpdf->Text(10,($loop+170), "$endereco ");
-    //     $fpdf->Text(10,($loop+175), "");
-    //     $fpdf->Text(10,($loop+180), "wendersonmtv@hotmail.com");
-    //     $limitador = $loop;
-
-
-                
-             
-        
-        
-              
-    //     $fpdf->Output();
-    //     exit;
-  
-
-   
-
-
-
-       
-       
     }
 
 
