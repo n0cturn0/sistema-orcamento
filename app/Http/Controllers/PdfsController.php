@@ -27,14 +27,7 @@ class PdfsController extends Controller
         ->join('controle_orcamento','controle_orcamento.cliente_id', '=', 'clientes.id')
         ->select('clientes.*', 'controle_orcamento.*')
         ->orderBy('idorcamento', 'DESC')->paginate(5);
-      
-        //   $clientes  = DB::table('clientes')
-        //  ->join('controle_orcamento','controle_orcamento.cliente_id', '=', 'clientes.id')->select('clientes.*')->paginate(5);
-        // $idorc= (intval($last->orcid)+1);
-        // $select_idetificacao = ("select * from clientes inner join controle_orcamento   on controle_orcamento.cliente_id = clientes.id ");
-        
-        
-        // $identificacao = DB::select($select_idetificacao);
+     
        
        
 
@@ -94,16 +87,7 @@ class PdfsController extends Controller
         //Marca e Modelo
         $binding = "select * from modelos inner join marcas on marcas.id = modelos.idmarca order by modelos.modelo ASC";
         $marcaemodelo = DB::select($binding);
-        // $data = [
-        //     'title' => 'Welcome to ItSolutionStuff.com',
-        //     'date' => date('m/d/Y'),
-        //     'produto'       => $produto,
-        //     'clienteform'   => $cliente,
-        //     'marcaemodelo'  => $marcaemodelo,
-        //     'identificacao'       =>  $identificacao,
-        //     'orcamentos'    => $orcamentos,
-        //     'orcamentos_sv' => $orcamentos_sv
-        // ];
+      
             
           
             $pdf = new Pdf();

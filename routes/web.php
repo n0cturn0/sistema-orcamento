@@ -38,14 +38,7 @@ Route::get('/', [\App\Http\Controllers\OrcamentoController::class,'index'])->nam
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-//TEMPLATE BASE
-// Route::get('/template', function () {
-//     return view('template');
-// });
 
-// Route::get('/cliente', function () {
-//     return view('cadastrocliente');
-// });
 
 
 //VIEW QUE VAI LEVAR PARA O MODULO DO ORCAMENTO
