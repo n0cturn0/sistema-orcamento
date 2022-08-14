@@ -35,9 +35,7 @@ Route::get('orcamentos/{id}', [\App\Http\Controllers\PdfsController::class,'orca
 Route::get('gerapdf/{id}', [\App\Http\Controllers\PdfsController::class,'gerapdf'])->name('gera-pdf');
 Route::get('/', [\App\Http\Controllers\OrcamentoController::class,'index'])->name('telacriaorcamento');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 
 
