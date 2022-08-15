@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use PDF;
 
+
+function __construct() {
+    print "In BaseClass constructor\n";
+}
+
+
 class TelaPrincipal extends Component
 {
     public $orcamentos, $orcamentos_sv,$identificacao, $idpdf, $totalfinal, $name, $servicoid, $dataentradaform, $phone, $cliente, $contact_id, $idorcamentoinsert, $insert_prev, $idclienteinsert, $marcaemodeloinsert;
