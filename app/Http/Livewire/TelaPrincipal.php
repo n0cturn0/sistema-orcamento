@@ -19,6 +19,7 @@ use PDF;
 function __construct() {
     print "In BaseClass constructor\n";
 }
+/* Criar point se for x mostrar configurações ou nao*/
 
 
 class TelaPrincipal extends Component
