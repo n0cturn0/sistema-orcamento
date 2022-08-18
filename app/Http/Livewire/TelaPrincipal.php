@@ -18,8 +18,9 @@ use PDF;
 
 function __construct() {
     print "In BaseClass constructor\n";
+    /* Criar point se for x mostrar configurações ou nao configuração de exibição de informações da loja e exibição de funcionalidades*/
 }
-/* Criar point se for x mostrar configurações ou nao*/
+
 
 
 class TelaPrincipal extends Component
