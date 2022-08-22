@@ -15,6 +15,7 @@ class Cliente extends Component
 
     public function render()
     {
+      $listacliente = ModelsCliente::orderBy('cliente', 'asc')->get();
         return view('livewire.cliente');
     }
 
@@ -44,7 +45,7 @@ class Cliente extends Component
 
         
             
-
+    
 
 
 
@@ -52,7 +53,7 @@ class Cliente extends Component
 
 
 
-
+   
 
 
 
