@@ -108,20 +108,20 @@
     <tbody>
         @foreach ($identificacao as $cliente)
       <tr>
-        <td colspan="3">NOME:<strong> {{$cliente->cliente}}</strong></td>
-        <td colspan="2">CPF: <strong>{{$cliente->cpf}}</strong></td>
+        <td colspan="3">Nome:<strong> {{$cliente->cliente}}</strong></td>
+        <td colspan="2">Cpf: <strong>{{$cliente->cpf}}</strong></td>
       </tr>
       <tr>
-        <td colspan="3">ENDEREÇO:<strong>{{$cliente->rua}}</strong></td>
-        <td colspan="2">CNPJ:<strong>{{$cliente->cnpj}}</strong></td>
+        <td colspan="3">Endereço:<strong>{{$cliente->rua}}</strong></td>
+        <td colspan="2">Cnpj:<strong>{{$cliente->cnpj}}</strong></td>
       </tr>
       <tr>
-        <td colspan="3">BAIRRO: <strong>{{$cliente->bairro}}</strong></td>
-        <td colspan="2">TELEFONE<strong>{{$cliente->telefone}}</strong></td>
+        <td colspan="3">Bairro: <strong>{{$cliente->bairro}}</strong></td>
+        <td colspan="2">Telefone<strong>{{$cliente->telefone}}</strong></td>
       </tr>
       <tr>
-        <td colspan="3">CIDADE <strong>{{$cliente->cidade}}</strong></td>
-        <td colspan="2">CELULAR <strong>{{$cliente->celular}}</strong></td>
+        <td colspan="3">Cidade <strong>{{$cliente->cidade}}</strong></td>
+        <td colspan="2">Celular <strong>{{$cliente->celular}}</strong></td>
       </tr>
       @endforeach
     </tbody>
@@ -186,7 +186,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <label for="exampleFormControlSelect3">Escolha o produto</label>
+                        <label for="exampleFormControlSelect3">Selecione o produto</label>
                         <select class="form-control form-control-sm" id="exampleFormControlSelect3"  wire:model="name.0" >
                             <option></option>
                        @foreach ($produto as $item)
@@ -261,7 +261,7 @@
         <div class="row">
             <div class="col-md-12">
                 <button type="button" wire:click.prevent="store()" class="btn btn-success btn-sm">Adicionar Item</button>
-                <button type="button" wire:click.prevent="finalizar()" class="btn btn-danger btn-sm">Encerrar Orçamento</button>
+                <button type="button" wire:click.prevent="finalizar()" class="btn btn-danger btn-sm">Finalizar Orçamento</button>
                
             </div>
         </div>
