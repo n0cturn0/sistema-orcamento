@@ -40,8 +40,8 @@ Route::get('/', [\App\Http\Controllers\OrcamentoController::class,'index'])->nam
 
 
 //VIEW QUE VAI LEVAR PARA O MODULO DO ORCAMENTO
-Route::get('/orcamento', function () {
-    return view('inicial');
-});
+// Route::get('/orcamento', function () {
+//     return view('inicial');
+// });
 
 
